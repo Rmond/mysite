@@ -1,0 +1,151 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+<!-- <link href="/static/datatables/css/jquery.dataTables.css" rel="stylesheet"> -->
+<link href="/static/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">常用SQL命令</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">                 
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="shdlist">
+                          <a class="btn btn-sm btn-primary-outline" href="{% url 'hd_mysql:sql_add' %}"><i class="fa fa-plus"></i>添加SQL语句</a>
+                          <a class="btn btn-sm btn-primary-outline" data-toggle="modal" data-target="#sqlimp"><i class="fa fa-cloud-upload"></i> 导入SQL语句</a>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>Sql语句</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for sqlinfo in sqlinfo_set%}
+                                    <tr>
+                                        <td></td>
+                                        <td id="{{sqlinfo.id}}">{{sqlinfo.sql_name}}</td>
+                                        <td>{{sqlinfo.sql_handle}}</td>
+                                        <td>
+                                          <a href="{% url 'hd_mysql:sql_edit' sqlinfo.id %}"
+                                          >编辑</a>
+                                          <a href="javascript:void(0);" class="delete">删除</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row --> 
+<!-- hostimport -->
+            <div class="modal fade" id="sqlimp" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">  
+                            <button type="button" class="close" data-dismiss="modal">×</button>  
+                        </div>
+                   <form id="sqlimp" role="form" method="post" enctype="multipart/form-data" action="sqlimp" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        <label>导入文件:</label>
+                        <input type="file" name="xlsname" required data-rule-filext="true" data-msg-required="请选择文件">
+                        <p class="help-block">
+							
+						</p>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>  
+                            <button type="submit" class="btn btn-primary">导入</button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>   
+{% endblock %}
+{% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#shdlist').DataTable({
+            //"responsive": true,
+            "lengthChange": false,
+            "bAutoWidth": false,
+            "oLanguage": {//国际语言转化
+            "oAria": {
+                "sSortAscending": " - click/return to sort ascending",
+                "sSortDescending": " - click/return to sort descending"
+            }, 
+            "sLengthMenu": "显示 _MENU_ 记录",
+            "sZeroRecords": "对不起，查询不到任何相关数据",
+            "sEmptyTable": "未有相关数据",
+            "sLoadingRecords": "正在加载数据-请等待...",
+            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+            "sInfoEmpty": "当前显示0到0条，共0条记录",
+            "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+            "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+            "sSearch": "模糊查询：",
+            "sUrl": "",
+            //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": " 上一页 ",
+                "sNext": " 下一页 ",
+                "sLast": " 尾页 "
+                }            
+           },
+		"aoColumns": [//设定各列宽度   
+				            {"sWidth": "40px"},
+				            {"sWidth": "60px"},
+				            {"sWidth": "*"},
+				            {"sWidth": "50px","orderable":false}],
+      });
+      table.on( 'order.dt search.dt', function () {
+          table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+              cell.innerHTML = i+1;
+          } );
+      } ).draw();
+      $('#shdlist tbody').on( 'click', 'a.delete', function () {
+      	  if (confirm("主人，真的不要我了吗？")) {
+      		  var id = $(this).parents('tr').children().eq(1).attr("id");;
+    			  $.ajax(
+    						{type: "POST",
+    				        url: "/hd_mysql/sqldel",
+    				        data: {
+    				        	"Id":id,
+    				        	},
+    				});
+                table.row($(this).parents('tr')).remove().draw(false);  
+            } 
+        } );
+    });
+  //IP地址
+    jQuery.validator.addMethod("hostip", function (value, element) {
+    	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+    	var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+    	return this.optional(element) || hostip.test(value);
+    }, "请输入正确的IP地址");
+   jQuery.validator.addMethod("filext", function (value, element) {
+    	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+    	var filext = /^.xls|.xlsx$/;
+    	return this.optional(element) || filext.test(value);
+    }, "只允许导入excel文件");
+</script>
+{% endblock %}

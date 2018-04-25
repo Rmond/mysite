@@ -1,0 +1,366 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+<!-- <link href="/static/datatables/css/jquery.dataTables.css" rel="stylesheet"> -->
+<link href="/static/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">备份计划</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">                 
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="shdlist">
+                          <a class="btn btn-sm btn-primary-outline" data-toggle="modal" data-target="#bk_shd_add" id="add-row"><i class="fa fa-plus"></i>添加备份计划</a>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>主机IP</th>
+                                        <th>备份对象</th>
+                                        <th>备份计划</th>
+                                        <th>状态</th>
+                                        <th>最后执行时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for shd_info in shd_info_set%}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{shd_info.mysql_bk_name}}</td>
+                                        <td>{{shd_info.hostip}}</td>
+                                        <td>{{shd_info.bk_database}}{% if shd_info.bk_table %}.{{shd_info.bk_table}}
+                                        {% endif %}
+                                        </td>
+                                        <td>
+                                        {{shd_info.ct_shd.sd_name}}
+                                        {{shd_info.hour_minute}}
+                                        </td>
+                                        <td>
+                                         <a href="javascript:void(0);" class="disable">
+                                        {% if shd_info.period_tk.enabled %}
+                                                                                  启用
+                                        {% else %}
+                                                                                  停用
+                                        {% endif %}
+                                        </a>
+                                        </td>
+                                        <td>
+                                        {{shd_info.period_tk.last_run_at|date:"Y-m-d H:i"}}
+                                        </td>
+                                        <td>
+                                          <a data-toggle="modal" data-target="#bk_shd_edit" class="edit">编辑</a>
+                                          <a href="javascript:void(0);" class="delete">删除</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+<!-- 模态框（Modal） -->  
+            <div class="modal fade" id="bk_shd_add" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header"> 添加备份计划 
+                            <button type="button" class="close" data-dismiss="modal">  
+                  ×  
+            </button>  
+                        </div>
+                   <form id="shdadd" role="form" method="post" action="shdadd" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                         <div class="form-group">
+								<label for="hostip" class="col-md-4 control-label">备份计划名称</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="bk_shd_name" required data-rule-bkshdname="true" data-msg-required="请输入备份计划名称"> </div>
+						</div>
+                        	<div class="form-group">
+								<label for="hostip" class="col-md-4 control-label">主机IP</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="HostIP" id="hostip" required data-rule-hostip="true" data-msg-required="请输入主机IP"> </div>
+						</div>
+						      <div class="form-group">
+								<label class="col-md-4 control-label">端口</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="login_port" required data-rule-port="true" data-msg-required="请输入数据库端口"> </div>
+						</div>
+						    <div class="form-group">
+								<label class="col-md-4 control-label">用户名</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="login_user" required data-msg-required="请输入数据库用户"> </div>
+						</div>
+						    <div class="form-group">
+								<label class="col-md-4 control-label">密码</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="login_pass" type="password" required data-msg-required="请输入数据库密码"> </div>
+						</div>
+						 <div class="form-group">
+								<label for="passwd" class="col-md-4 control-label">备份频率</label>
+							      <div class="col-md-6">
+                                    <select id="bk_hz" name="BK_HZ" class="form-control">
+                                    </select>
+                                </div>
+                          </div>
+                          <div class="form-group">
+								<label for="bk_hour" class="col-md-4 control-label">时</label>
+								<div class="col-md-2">
+								<input class="form-control" name="BK_Hour" id="bk_hour" required data-rule-hour="true" data-msg-required="请输入备份时间">
+								</div>
+								<label for="bk_min" class="col-md-1 control-label">分</label>
+								<div class="col-md-3">
+								<input class="form-control" name="BK_Min" id="bk_min" placeholder="留空为整点" data-rule-minute="true">
+								</div>
+                          </div>
+						  <div class="form-group">
+								<label for="bk_database" class="col-md-4 control-label">备份数据库</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="bk_database" id="bk_database" required data-msg-required="请输入数据库名称"> </div>
+						</div>
+						 <div class="form-group">
+								<label for="bk_table" class="col-md-4 control-label">备份数据表</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="bk_table" id="bk_table" placeholder="留空为整库备份"> </div>
+						</div>
+						<div class="form-group">
+						<label class="col-md-4 control-label">备份路径</label>
+						<div class="col-md-6">
+						<input class="form-control" name="bk_path" placeholder="请确保路径存在" required
+							data-rule-destpath="true" data-msg-required="请输入备份文件地址"> </div>
+					    </div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dataclose">关闭  
+            </button>  
+                            <button type="submit" class="btn btn-primary" id="datasubmit">  
+               保存
+            </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>       
+<!-- 模态框（Modal） -->
+           <div class="modal fade" id="bk_shd_edit" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header"> 修改备份时间 
+                            <button type="button" class="close" data-dismiss="modal">  
+                  ×  
+            </button>  
+                        </div>
+                   <form id="shdedit" role="form" method="post" action="shdedit" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                         <div class="form-group">
+								<label for="hostip" class="col-md-4 control-label">备份计划名称</label>
+								 <div class="col-md-6">
+								 <input type="hidden" id="bk_shd_name" name="bk_shd_name">
+                                  <p class="form-control-static" id="p_bk_shd_name"></p>
+                                   </div>
+						</div>
+                        	<div class="form-group">
+								<label for="hostip" class="col-md-4 control-label">主机IP</label>
+								 <div class="col-md-6">
+								  <p class="form-control-static" id="p_hostip"></p>
+						      </div>
+						    </div>
+						 <div class="form-group">
+								<label for="passwd" class="col-md-4 control-label">备份频率</label>
+							      <div class="col-md-6">
+                                    <select id="u_bk_hz" name="u_BK_HZ" class="form-control">
+                                    </select>
+                                </div>
+                          </div>
+                          <div class="form-group">
+								<label for="bk_hour" class="col-md-4 control-label">时</label>
+								<div class="col-md-2">
+								<input class="form-control" name="u_BK_Hour" required data-rule-hour="true" data-msg-required="请输入备份时间">
+								</div>
+								<label for="bk_min" class="col-md-1 control-label">分</label>
+								<div class="col-md-3">
+								<input class="form-control" name="u_BK_Min" placeholder="留空为整点" data-rule-minute="true">
+								</div>
+                          </div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dataclose">关闭  
+            </button>  
+                            <button type="submit" class="btn btn-primary" id="datasubmit">  
+               保存
+            </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>       
+{% endblock %}
+{% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#shdlist').DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "bAutoWidth": false,
+            "oLanguage": {//国际语言转化
+            "oAria": {
+                "sSortAscending": " - click/return to sort ascending",
+                "sSortDescending": " - click/return to sort descending"
+            }, 
+            "sLengthMenu": "显示 _MENU_ 记录",
+            "sZeroRecords": "对不起，查询不到任何相关数据",
+            "sEmptyTable": "未有相关数据",
+            "sLoadingRecords": "正在加载数据-请等待...",
+            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+            "sInfoEmpty": "当前显示0到0条，共0条记录",
+            "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+            "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+            "sSearch": "模糊查询：",
+            "sUrl": "",
+            //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": " 上一页 ",
+                "sNext": " 下一页 ",
+                "sLast": " 尾页 "
+                }            
+           },
+		"aoColumns": [//设定各列宽度   
+				            {"sWidth": "40px"},
+				            {"sWidth": "60px"},
+				            {"sWidth": "80px"},
+				            {"sWidth": "80px"},
+				            {"sWidth": "80px"}, 
+				            {"sWidth": "40px"},
+				            {"sWidth": "100px"},   
+				            {"sWidth": "60px","orderable":false}],
+      });
+      table.on( 'order.dt search.dt', function () {
+          table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+              cell.innerHTML = i+1;
+          } );
+      } ).draw();
+      $('#shdlist tbody').on( 'click', 'a.edit', function () {
+    	  var bk_shd_name = $(this).parents('tr').children().eq(1).text();
+    	  $('#p_bk_shd_name').text(bk_shd_name);
+    	  $('#bk_shd_name').val(bk_shd_name);
+    	  $('#p_hostip').text($(this).parents('tr').children().eq(2).text());
+    	  bkhzget("#u_bk_hz");
+			});
+      $('#shdlist tbody').on( 'click', 'a.delete', function () {
+      	  if (confirm("主人，真的不要我了吗？")) {
+      		  var bk_shd_name = $(this).parents('tr').children().eq(1).text();
+    			  $.ajax(
+    						{type: "POST",
+    				        url: "/hd_mysql/shddel",
+    				        data: {
+    				        	"bk_shd_name":bk_shd_name,
+    				        	},
+    				});
+                table.row($(this).parents('tr')).remove().draw(false);  
+            } 
+        } );
+    });
+    $('#shdlist tbody').on( 'click', 'a.disable', function () {
+  		  var bk_shd_name = $(this).parents('tr').children().eq(1).text();
+			  $.ajax(
+						{type: "POST",
+				        url: "/hd_mysql/shdenable",
+				        data: {
+				        	"bk_shd_name":bk_shd_name,
+				        	},
+				        	success: function(resp){
+					        	 if(resp){
+					        		 window.location.reload();
+					        	 }
+					        },
+				});
+    } );
+$("#add-row").click(function(){
+	bkhzget("#bk_hz");
+      });
+function bkhzget(sel_id){
+	  if($(sel_id).val() == null){
+    	  $.ajax(
+  			 {type: "POST",
+  		       url: "/hd_mysql/bkhzajaxget",
+  		       success: function(data){
+  			    	  var obj = eval('(' + data + ')');
+  			    	  for (k in obj){
+  			    		  $(sel_id).append("<option value="+k+">"+obj[k]+"</option>")
+  			    	  }
+  		       }
+  				});
+  	  }
+}    
+  
+$("#shdadd").validate({
+        submitHandler: function() {
+        	form.submit();
+       },
+        onfocusout: function(element) { $(element).valid(); },
+    });
+$("#shdedit").validate({
+    submitHandler: function() {
+    	form.submit();
+   },
+    onfocusout: function(element) { $(element).valid(); },
+});
+  //IP地址
+    jQuery.validator.addMethod("hostip", function (value, element) {
+    	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+    	var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+    	return this.optional(element) || hostip.test(value);
+    }, "请输入正确的IP地址");
+	 jQuery.validator.addMethod("destpath", function (value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var destpath = /^(\/[A-Za-z0-9_]+)+$/;
+			return this.optional(element) || destpath.test(value);
+		}, "请输入正确的路径格式");
+	 jQuery.validator.addMethod("hour", function (value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var hour = /^([0-9]|1\d|2[0-3])$/;
+			return this.optional(element) || hour.test(value);
+		}, "时间不符合规定");
+	 jQuery.validator.addMethod("minute", function (value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var minute = /^([0]?[0-9]|[1-59]\d)$/;
+			return this.optional(element) || minute.test(value);
+		}, "时间不符合规定");
+	 jQuery.validator.addMethod("port", function (value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var port = /^(\d+)$/;
+			return this.optional(element) || (port.test(value) && parseInt(value)>=3306 && parseInt(value)<65536);
+		}, "请输入正确的端口号");
+	 jQuery.validator.addMethod("bkshdname", function (value, element) {
+		   var result = false;
+		   $.ajaxSetup({async:false});
+		   var param = {'bk_shd_name':value};
+		   $.post("bkshdnamechk",param,function(data){
+			   result = (1 == data);
+		   });
+		   $.ajaxSetup({async:true});
+		   return result;
+		},"备份计划名称已存在");
+</script>
+{% endblock %}

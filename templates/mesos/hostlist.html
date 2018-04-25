@@ -1,0 +1,395 @@
+{% extends "mesos/main-layout.html" %} {% block css%}
+<!-- <link href="/static/datatables/css/jquery.dataTables.css" rel="stylesheet"> -->
+<link href="/static/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+{% endblock %} {% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">主机列表</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+
+				<table width="100%"
+					class="table table-striped table-bordered table-hover"
+					id="host-info">
+					<a class="btn btn-sm btn-primary-outline" data-toggle="modal"
+						data-target="#hostaddModal" id="add-row"><i class="fa fa-plus"></i>
+						添加主机</a>
+					<a class="btn btn-sm btn-primary-outline" data-toggle="modal"
+						data-target="#hostimp"><i class="fa fa-cloud-upload"></i> 导入主机</a>
+					<thead>
+						<tr>
+							<th class="text-center"><input type="checkbox"
+								class="checkall" value="checkall" /></th>
+							<th>主机名</th>
+							<th>IP地址</th>
+							<th>主机标签</th>
+							<th>主机组</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<div class="x_content">
+					<button type="button" class="btn btn-sm btn-danger" id="delete">删除</button>
+					<button type="button" class="btn btn-sm btn-success" id="update">更新</button>
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="hostaddModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				添加主机
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<form id="hostadd" role="form" method="post" action="hostadd"
+				class="form-horizontal">
+				{% csrf_token %}
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="hostname" class="col-md-2 control-label">主机名</label>
+						<div class="col-md-6">
+							<input class="form-control" name="HostName" id="add_hostname"
+								required data-msg-required="请输入主机名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hostip" class="col-md-2 control-label">IP地址</label>
+						<div class="col-md-6">
+							<input class="form-control" name="HostIP" id="add_hostip"
+								required data-rule-hostip="true" data-rule-asynchostip="true"
+								data-msg-required="请输入IP地址">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-md-2 control-label">主机标签</label>
+						<div class="col-md-4">
+							<div>
+								<select id="add_tags" name="tags" class="form-control m-b"
+									size="3" multiple="multiple">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="btn-group" style="margin-left: -8px;">
+								<button type="button" class="btn btn-default"
+									onclick="MoveOption('#add_tags','#add_tags_select')">
+									<i class="fa fa-chevron-right"></i>
+								</button>
+								<button type="button" class="btn btn-default"
+									onclick="MoveOption('#add_tags_select','#add_tags')">
+									<i class="fa fa-chevron-left"></i>
+								</button>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div>
+								<select id="add_tags_select" name="tags_select"
+									class="form-control m-b" size="3" multiple="multiple">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-md-2 control-label">主机组</label>
+						<div class="col-md-4">
+							<div>
+								<select id="add_assets" name="assets" class="form-control m-b"
+									size="12" multiple="multiple">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="btn-group"
+								style="margin-top: 60px; margin-left: -8px;">
+								<button type="button" class="btn btn-default"
+									onclick="MoveOption('#add_assets','#add_asset_select')">
+									<i class="fa fa-chevron-right"></i>
+								</button>
+								<button type="button" class="btn btn-default"
+									onclick="MoveOption('#add_asset_select','#add_assets')">
+									<i class="fa fa-chevron-left"></i>
+								</button>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div>
+								<select id="add_asset_select" name="asset_select"
+									class="form-control m-b" size="12" multiple="multiple">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="submit" class="btn btn-primary">保存</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+</div>
+<!-- hostimport -->
+<div class="modal fade" id="hostimp" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<form id="hostimp" role="form" method="post"
+				enctype="multipart/form-data" action="hostimp"
+				class="form-horizontal">
+				{% csrf_token %}
+				<div class="modal-body">
+					<label>导入文件:</label> <input type="file" name="xlsname" required
+						data-rule-filext="true" data-msg-required="请选择文件">
+					<p class="help-block"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary">导入</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+</div>
+{% endblock %} {% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#host-info').DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "oLanguage": {//国际语言转化
+            "oAria": {
+                "sSortAscending": " - click/return to sort ascending",
+                "sSortDescending": " - click/return to sort descending"
+            }, 
+            "sLengthMenu": "显示 _MENU_ 记录",
+            "sZeroRecords": "对不起，查询不到任何相关数据",
+            "sEmptyTable": "未有相关数据",
+            "sLoadingRecords": "正在加载数据-请等待...",
+            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+            "sInfoEmpty": "当前显示0到0条，共0条记录",
+            "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+            "sSearch": "模糊查询：",
+            "sUrl": "",
+            //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": " 上一页 ",
+                "sNext": " 下一页 ",
+                "sLast": " 尾页 "
+                }            
+           },
+		"order": [[1,"asc"]],  
+		"processing":true,
+		"serverSide":true,
+		"ajax":{
+			url: '/hd_mesos/assets_list',
+			type: 'POST'
+		},
+	    "columnDefs": [
+	             {
+	            	      "targets" : 0,
+	                      "sClass": "text-center",
+	                      "data": null,
+	                      "render": function (data, type, row) {
+	                          return '<input type="checkbox"  class="checkchild"  value="' + row[1] + '" />';
+	                      },
+	                      "bSortable": false,
+	                      "sWidth": "25px",
+	             },
+	            {"targets" : 1,//操作按钮目标列
+	              "data" : null,
+	              "render" : function(data, type, row) {
+	                   return row[0];
+	                 },
+	              "width": "170px",
+	            },
+	            {"targets" : 2,//操作按钮目标列
+		          "data" : null,
+		          "render" : function(data, type, row) {
+		                return row[1];
+		             },
+		          "sWidth": "110px",
+	            },
+		       {"targets" : 3,//操作按钮目标列
+			     "data" : null,
+			     "render" : function(data, type, row) {
+			           return row[2];
+			          },
+			     "sWidth": "200px",
+		       },
+			   {"targets" : 4,//操作按钮目标列
+				 "data" : null,
+				 "render" : function(data, type, row) {
+				        return row[3];
+				        },
+				 "sWidth": "200px",
+			    },          
+			    {"targets" : 5,//操作按钮目标列
+			     "data" : null,
+			     "sClass": "text-center",
+				 "render" : function(data, type, row) {
+					   var html = '<ul style="margin:0px;padding:0px"><a href="/hd_mesos/hostlook/'+row[1]+'">编辑</a><a href="javascript:void(0);" style="margin-left:12px" class="delete">删除</a></ul>';
+					   return html;
+					    },
+				 "sWidth": "80px",
+	             }
+	    ]
+      });
+      $('#host-info tbody').on( 'click', 'a.delete', function () {
+    	  if (confirm("主人，真的不要我了吗？")) {
+    		  var hostIP = $(this).parents('tr').children().eq(2).text();
+			  $.ajax(
+						{type: "POST",
+				        url: "/hd_mesos/hostdel",
+				        data: {
+				        	"HostIP":hostIP,
+				        	},
+				      /*  success: function(resp){
+				        	 alert(resp);
+				        }*/
+				});
+              table.row($(this).parents('tr')).remove().draw(false);  
+          } 
+      } );
+      $("#hostaddModal").on("hidden.bs.modal", function() {
+	    	$("div.form-group span").remove();
+	    	$("#add_tags").empty();
+	    	$("#add_tags_select").empty();
+	    	$("#add_assets").empty();
+	    	$("#add_asset_select").empty();
+    	});
+      $("#delete").click(function() {
+    		var checklist = [];
+    		$('input:checkbox:checked').each(function(){ 
+    			checklist.push($(this).val()); 
+    			}); 
+    		if (checklist.length==0){
+    			alert("你还没有选中任何内容哦!");
+    		}
+    		else{
+    		  	  $.ajax(
+    		 			 {type: "POST",
+    		 		       url: "/hd_mesos/hostlistdel",
+    		 		       data: {"checklist":checklist,"csrfmiddlewaretoken": "{{ csrf_token }}"},
+    		 		       traditional: true,
+    		 		       success: function(data){
+    		 		    	  window.location.reload();
+    		 		       },
+    		 				});
+    		}
+    	});
+      
+    });
+    
+    $("#add-row").click(function(){
+  	  $.ajax(
+			 {type: "POST",
+		       url: "/hd_mesos/grouptagajaxget",
+		       success: function(data){
+			    	  var obj = eval('(' + data + ')');
+			    	  for (i in obj.grouplist){
+			    		  $("#add_assets").append("<option value="+i+">"+obj.grouplist[i]+"</option>")
+			    	  }
+			    	  for (j in obj.taglist){
+			    		  $("#add_tags").append("<option value="+j+">"+obj.taglist[j]+"</option>")
+			    	  }
+		       }
+				});
+    });
+ //载入validator方法，在main-layout中
+$(function(){
+    	formsubmit("#hostadd",new Array("#add_asset_select","#add_assets","#add_tags_select","#add_tags"));
+    });	
+$(".checkall").click(function () {
+    var check = $(this).prop("checked");
+    $(".checkchild").prop("checked", check);
+});
+
+$("#update").click(function() {
+	var checklist = [];
+	$('input:checkbox:checked').each(function(){ 
+		checklist.push($(this).val()); 
+		}); 
+	if (checklist.length==0){
+		alert("你还没有选中任何内容哦!");
+	}
+	else{
+	  	  $.ajax(
+	 			 {type: "POST",
+	 		       url: "/hd_mesos/hostupdate",
+	 		       data: {"checklist":checklist},
+	 		       traditional: true,
+	 		       success: function(data){
+	 		    	  window.location.reload();
+	 		       },
+	 				});
+	}
+});
+//配置通用的默认提示语
+/*$.extend($.validator.messages, {
+	required: '必填',
+    equalTo: "请再次输入相同的值"
+});*/
+
+//IP地址
+jQuery.validator.addMethod("hostip", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+	return this.optional(element) || hostip.test(value);
+}, "请输入正确的IP地址");
+
+//ip地址是否存在
+jQuery.validator.addMethod("asynchostip", function (value, element) {
+   var result = false;
+   $.ajaxSetup({async:false});
+   var param = {HostIP:value};
+   $.post("/hd_common/hostipchk",param,function(data){
+	   result = (1 == data);
+   });
+   $.ajaxSetup({async:true});
+   return result;
+},"主机IP已存在");
+
+$("#hostimp").validate({
+    submitHandler: function() {
+    	form.submit();
+   },
+    onfocusout: function(element) { $(element).valid(); },
+});
+
+jQuery.validator.addMethod("filext", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var filext = /^.xls|.xlsx$/;
+	return this.optional(element) || filext.test(value);
+}, "只允许导入excel文件");
+</script>
+{% endblock %}

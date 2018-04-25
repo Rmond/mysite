@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>HanDu Automation Platforms</title>
+<!-- Bootstrap -->
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+{% block css%} {% endblock %}
+<link rel="stylesheet" type="text/css" href="/static/css/handu.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id='wrapper'>
+   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+     <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/hd_mesos/index.html">HanDu Admin</a>
+       </div>
+     <ul class="nav navbar-top-links navbar-right">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+             <i class="fa fa-user fa-fw"></i> 
+             <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+             <li><a data-toggle="modal" data-target="#userModal" id="userinfo"><i class="fa fa-user fa-fw"></i> 用户信息</a>
+                        </li>
+              <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+                        </li>
+              <li class="divider"></li>
+              <li><a href="/hd_mesos/logout"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                        </li>
+         </ul>
+      </li>
+    </ul>
+              <div>
+      <p class="navbar-text navbar-right">{{request.session.is_login}}</p>
+      </div>
+     <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav in" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/hd_mesos/index.html"><i class="fa fa-dashboard fa-fw"></i> 仪表盘</a>
+                        </li>
+                         <li>
+                            <a href="#"><i class="fa fa-server fa-fw"></i> 服务器<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="/hd_mesos/hostlist.html">主机列表</a>
+                                </li>
+                                <li>
+                                    <a href="/hd_mesos/hostgroups.html">主机组列表</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                      <li>
+                            <a href="#"><i class="fa fa-retweet fa-fw"></i> Ansible<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="#">Tomcat<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level collapse">
+                                     <li>
+                                       <a href="/hd_ansible/tomcat/projectdev">项目部署</a>
+                                       <a href="/hd_ansible/tomcat/rollback">历史版本回滚</a>
+                                     </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+   </nav>
+   <div id="page-wrapper">
+     	{% block content %}
+		{% endblock %}
+   </div>
+                  <!-- 模态框（Modal） -->  
+            <div class="modal fade" id="userModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">  
+                            <button type="button" class="close" data-dismiss="modal">  
+                  ×  
+            </button>  
+                        </div>
+                   <form id="useredit" role="form" method="post" action="useredit" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body col-md-12 col-md-offset-1">
+                        	<div class="form-group">
+								<label for="username" class="col-md-2 control-label">用户名</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Username" id="username" readonly="readonly"> </div>
+						     </div>
+						 <div class="form-group">
+								<label for="nickname" class="col-md-2 control-label">昵称</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Nickname" id="nickname" required data-msg-required="请输入昵称"> 
+								 </div>
+						 </div>
+	                   <div class="form-group">
+								<label for="password" class="col-md-2 control-label">密码</label>
+								 <div class="col-md-6">
+								 <input class="form-control" placeholder="Password" name="Password" id="password" type="password" rangelength="6,12"> 
+								 </div>
+						</div>
+				        <div class="form-group">
+								<label for="confirmpass" class="col-md-2 control-label">确认密码</label>
+								 <div class="col-md-6">
+								 <input class="form-control" placeholder="Confirm Password" name="Confirmpass" id="confirmpass" type="Password" equalTo="#password" data-msg-equalTo="两次密码不相同"> 
+								 </div>
+						</div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dataclose">关闭  
+            </button>  
+                            <button type="submit" class="btn btn-primary" id="datasubmit">  
+               保存
+            </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="/static/metisMenu/metisMenu.min.js"></script>
+<script src="/static/jquery-validate/jquery.validate.js"></script>
+<script src="/static/jquery-validate/messages_zh.js"></script>
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+{% block js %} {% endblock %}
+<script src="/static/js/handu.js"></script>
+<script></script>
+</body>
+</html>

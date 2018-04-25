@@ -1,0 +1,79 @@
+/usr/lib/python2.7/site-packages/celery/platforms.py:793: RuntimeWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the -u option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  uid=uid, euid=euid, gid=gid, egid=egid,
+[2018-03-30 13:45:35,864: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2018-03-30 13:45:35,883: INFO/MainProcess] mingle: searching for neighbors
+[2018-03-30 13:45:36,912: INFO/MainProcess] mingle: all alone
+[2018-03-30 13:45:36,927: WARNING/MainProcess] /usr/lib/python2.7/site-packages/celery/fixups/django.py:202: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+[2018-03-30 13:45:36,927: INFO/MainProcess] celery@server155 ready.
+
+Restarting celery worker (/usr/bin/celery -A mysite worker -l info)
+
+worker: Warm shutdown (MainProcess)
+ 
+ -------------- celery@server155 v4.0.2 (latentcall)
+---- **** ----- 
+--- * ***  * -- Linux-3.10.0-514.16.1.el7.x86_64-x86_64-with-centos-7.3.1611-Core 2018-03-30 13:45:35
+-- * - **** --- 
+- ** ---------- [config]
+- ** ---------- .> app:         mysite:0x1e5a2d0
+- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . hd_ansible.tasks.com_playbook
+  . hd_ansible.tasks.db_dump
+  . hd_ansible.tasks.install
+  . hd_ansible.tasks.sid_init
+  . hd_ansible.tasks.sid_update_task
+  . hd_ansible.tasks.update
+  . hd_mesos.tasks.update_info
+  . mysite.celery.debug_task
+
+/usr/lib/python2.7/site-packages/celery/platforms.py:793: RuntimeWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the -u option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  uid=uid, euid=euid, gid=gid, egid=egid,
+[2018-04-20 09:36:06,413: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 2.00 seconds...
+
+[2018-04-20 09:36:08,426: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 4.00 seconds...
+
+[2018-04-20 09:36:12,439: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 6.00 seconds...
+
+[2018-04-20 09:36:18,456: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 8.00 seconds...
+
+[2018-04-20 09:36:26,475: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 10.00 seconds...
+
+[2018-04-20 09:36:36,495: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 12.00 seconds...
+
+[2018-04-20 09:36:48,522: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 14.00 seconds...
+
+[2018-04-20 09:37:02,547: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 16.00 seconds...
+
+[2018-04-20 09:37:18,574: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+Trying again in 18.00 seconds...
+

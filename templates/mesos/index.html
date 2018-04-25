@@ -1,0 +1,175 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+{% endblock %}
+{% block content %}
+           <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-users fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{user_count}}</div>
+                                    <div>用户总数</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/hd_mesos/userlist">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-server fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ host_count }}</div>
+                                    <div>主机总数</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/hd_mesos/hostlist">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                               <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12</div>
+                                    <div>New 任务!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/hd_mesos/tasklist">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Support Tickets!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>            <!-- /.row -->
+     <div class="row">
+      <div class="col-md-12 col-sm-8 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h4>过去7天任务统计</h4>
+                  </div>
+                  <div class="x_content">
+                    <div id="mainb" style="height: 260px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+     </div>
+{% endblock %}
+{% block js%}
+<script src="/static/echarts/echarts.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('mainb'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {
+            	trigger: 'axis',
+            },
+            legend: {
+                data:['任务量']
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '任务量',
+                type: 'line',
+                data: []
+            }]
+        };
+        var names=[];    //类别数组（实际用来盛放X轴坐标值）
+        var nums=[];    //销量数组（实际用来盛放Y坐标值）       
+        $.ajax({
+        type : "post",
+        async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "taskchart",    //请求发送到
+        data : {},
+        dataType : "json",        //返回数据形式为json
+        success : function(result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                   myChart.hideLoading();    //隐藏加载动画
+                   myChart.setOption({        //加载数据图表
+                       xAxis: {
+                           data: result.name
+                       },
+                       series: [{
+                           // 根据名字对应到相应的系列
+                           name: '任务量',
+                           data: result.num
+                       }]
+                   });
+                   
+            }
+        
+       },
+        error : function(errorMsg) {
+            //请求失败时执行该函数
+        alert("图表请求数据失败!");
+        myChart.hideLoading();
+        }
+   });
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "mesos/main-layout.html" %} 
+{% block css%} {% endblock %} 
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">执行SQL命令</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-success">
+			<div class="panel-heading"></div>
+			<form id="sqlexec" role="form" method="post"
+				class="form-horizontal">
+				<div class="panel-body">
+				<div class="col-lg-4">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="sqlname" class="col-md-4 control-label">SQL名称</label>
+						<div class="col-md-8">
+							<input class="form-control" name="SqlName" id="sqlname"
+								required data-rule-sqlname="true" data-msg-required="请输入SQL名称" list="sql">
+						<datalist id="sql">  
+                       </datalist> 
+						</div>
+					</div>
+					<div class="form-group" id="sqlargs">
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">IP地址</label>
+						<div class="col-md-8">
+						<input class="form-control" name="HostIP" id="hostip" required data-rule-hostip="true" data-msg-required="请输入数据库IP">
+					 </div>
+					</div>
+					<div class="form-group">
+								<label for="login_port" class="col-md-4 control-label">数据库端口</label>
+								 <div class="col-md-8">
+								 <input class="form-control" name="Login_port" id="login_port" value="3306" required
+							data-msg-required="请输入数据库登录端口">
+					</div>
+					</div>
+					<div class="form-group">
+					  <label for="login_user" class="col-md-4 control-label">数据库用户</label>
+					  <div class="col-md-8">
+					  <input class="form-control" name="Login_user" id="login_user" value="root" required
+							data-msg-required="请输入数据库登录用户">
+					</div>
+					</div>
+					<div class="form-group">
+					 <label for="login_pass" class="col-md-4 control-label">数据库密码</label>
+					  <div class="col-md-8">
+					  <input class="form-control" name="Login_pass" type="password" id="login_pass" required data-msg-required="请输入密码"> 
+					  </div>
+						</div>
+						</div>
+						<div class="col-lg-8">
+						<div class="form-group">
+						<label class="col-md-2 control-label">执行结果</label>
+						<div class="col-md-2">
+						<textarea wrap="off" class="textarea_set2" id="sqlexecres"
+						></textarea>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="panel-footer text-center">
+					<button type="submit" class="btn btn-success" id="submit">执行</button>
+				</div>
+				</form>
+		</div>
+	</div>
+</div>
+<div>
+</div>
+{% endblock %} 
+{% block js%}
+<script>
+$(function(){
+    //jquery.validate
+	validator=$("#sqlexec").validate({
+		onfocusout: function(element) { $(element).valid(); },
+		submitHandler:function(){
+	          sqlexec_submit();
+	      },
+	});
+	function sqlexec_submit() {
+		  var data = {
+		    	    "SqlName":$('#sqlname').val(),
+		        	"HostIP":$('#hostip').val(),
+		        	"Login_port":$('#login_port').val(),
+		        	"Login_user":$('#login_user').val(),
+		        	"Login_pass":$('#login_pass').val(),
+		  };
+		  for(var i=0; i<$("#sqlargs").attr('num'); i++){
+			  data['arg'+i] = $('#arg'+i).val();
+		  };
+		  $.ajax(
+				{type: "POST",
+				  url: "/hd_mysql/sqlexecres",
+			      data: data,
+			      beforeSend: function(){
+			    	  $("#submit").attr("disabled", true);
+			    	  $("#sqlexecres").val("正在执行,请稍后...");
+			      },
+			      success: function(data)	{
+			    	var obj = eval('(' + data + ')');
+			    	$("#sqlexecres").val(obj.join("\n"));
+			    	//$("#sqlexecres").val(data);
+			        },
+			      complete:function(){
+			    	  $("#submit").attr("disabled", false);
+			      },
+						});
+	}
+});
+$("#sqlname").keyup(function(){
+	  sql_input = $("#sqlname").val();
+	  $.ajax(
+	 			 {type: "POST",
+	 		       url: "/hd_mysql/sqlnameget",
+	 		       data: {"sql_input":sql_input},
+	 		       traditional: true,
+	 		       success: function(data){
+	 		    	  $("#sql").empty(); 
+	 		    	  var obj = eval('(' + data + ')');
+	 		    	  for (i in obj){
+	 		    		 $("#sql").append("<option>"+obj[i]+"</option>");
+	 		    	  }
+	 		       },
+	 				});
+		});
+$("#sqlname").change(function(){
+	  sqlname = $("#sqlname").val();
+	  $.ajax(
+	 			 {type: "POST",
+	 		       url: "/hd_mysql/argcountget",
+	 		       data: {"sqlname":sqlname},
+	 		       traditional: true,
+	 		       success: function(data){
+	 		    	  $("#sqlargs").empty().attr("num",data);;
+	 		    	  for (var i=0; i<data; i++){
+	 		    		 $("#sqlargs").append('<label class="col-md-4 control-label">参数'+(i+1)+'</label><div class="col-md-8"><input class="form-control" id="arg'+i+'"required data-msg-required="请输入参数"></div>');
+	 		    	  }
+	 		       },
+	 				});
+		});
+jQuery.validator.addMethod("sqlname", function (value, element) {
+	   var result = false;
+	   $.ajaxSetup({async:false});
+	   var param = {"sqlname":value};
+	   $.post("{% url 'hd_mysql:sqlname_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "SQL不存在!");
+//IP地址
+jQuery.validator.addMethod("hostip", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+	return this.optional(element) || hostip.test(value);
+}, "请输入正确的IP地址");
+</script>
+ {% endblock %}

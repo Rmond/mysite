@@ -1,0 +1,152 @@
+{% extends "mesos/main-layout.html" %} {% block css%} {% endblock %}
+{%block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">软件升级</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-1">
+						<form id="updated" role="form" method="post" action="updated" class="form-horizontal">
+							{% csrf_token %}
+							<div class="form-group">
+								<label class="col-md-4 control-label">软件名称</label>
+								<div class="col-md-6">
+									<select class="form-control" name="Softname" id="softname" required
+										data-msg-required="请选择">
+										<option value>===请选择===</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label">软件版本</label>
+								<div class="col-md-6">
+									<select class="form-control" name="SoftVersion" id="softversion"
+										required data-msg-required="请选择">
+										<option value>===请选择===</option>
+									</select>
+								</div>
+							</div>
+						<div class="form-group">
+						    <label for="grp_assets" class="col-md-4 control-label">主机组</label>
+                            <div class="col-md-6">
+                                    <select id="grp_assets" name="grp_assets" class="form-control m-b" size="3" multiple="multiple">
+                                    </select>
+                             </div>
+                       </div>
+                      <div class="form-group">
+						    <label for="host_assets" class="col-md-4 control-label">主机IP</label>
+                            <div class="col-md-6">
+                                    <select id="host_assets" name="host_assets" class="form-control m-b" size="6" multiple="multiple">
+                                    </select>
+                             <span class="error">{{error}}</span>
+                                </div>
+                            </div> 
+						  <div class="form-group">
+							<div class="col-md-6 col-md-offset-6">
+								<button type="submit" class="btn btn-default">升级</button>
+							</div>
+							</div>
+						</form>
+					</div>
+					<!-- /.col-lg-6 (nested) -->
+				</div>
+				<!-- /.row (nested) -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+{% endblock %} {% block js%}
+<script>
+$(function () {
+    SoftnameBind();
+    //绑定事件
+    $("#softname").change( function () {
+        SoftVersionBind();
+        $("#grp_assets").empty();
+        $("#host_assets").empty();
+        $.ajax({ 
+        	   type: "POST",
+   		       url: "ugrouphostget",
+   		       data: {"softid":$("#softname").val()},
+   		       success: function(data){
+   			    	  var obj = eval('(' + data + ')');
+   			    	  for (i in obj.groups){
+   			    		  $("#grp_assets").append("<option value="+i+">"+obj.groups[i]+"</option>")
+   			    	  }
+   			    	  for (j in obj.hosts){
+   			    		  $("#host_assets").append("<option value="+obj.hosts[j]+">"+obj.hosts[j]+"</option>")
+   			    	  }
+   		       }
+   				});
+    })
+})
+function SoftnameBind() {
+    //清空下拉数据
+    $("#softname").html("");
+    $("#softname").append("<option value>===请选择===</option>");
+    $.ajax({
+        type: "POST",
+        url: "softselect",
+        data: '{"MyColums":"SoftName"}',
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            //从服务器获取数据进行绑定
+            for (i in data){
+                $("#softname").append("<option value=" + i + ">" + data[i] + "</option>");
+            }
+        },
+        error: function () { alert("Error"); }
+    });
+}
+function SoftVersionBind() {
+    var provice = $("#softname").val();
+    //判断省份这个下拉框选中的值是否为空
+    if (provice == "") {
+        return;
+    }
+    $("#softversion").html("");
+    $("#softversion").append("<option value>===请选择===</option>");
+    $.ajax({
+        type: "POST",
+        url: "softselect",
+        data: '{"parentId":"'+provice+'","MyColums":"SoftVersion"}',
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            //从服务器获取数据进行绑定
+            for (i in data){
+            //将数据添加到省份这个下拉框里面
+            $("#softversion").append("<option value=" + data[i] + ">" + data[i] + "</option>");
+            }
+        },
+        error: function () { alert("Error"); }
+    });
+}
+$(function(){
+    //jquery.validate
+	$("#updated").validate({
+		submitHandler: function() {
+			//验证通过后 的js代码写在这里
+			//alert("提交事件!");
+			form.submit();
+			//debug:true
+		},
+		onfocusout: function(element) { $(element).valid(); }
+	});
+})
+//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+$.validator.setDefaults({
+	errorElement:'span',
+});
+</script>
+{% endblock %}

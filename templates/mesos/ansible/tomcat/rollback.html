@@ -1,0 +1,225 @@
+{% extends "mesos/main-layout.html" %} {% block css%} {% endblock %}
+{%block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">历史版本回滚</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+						<form id="rollback" role="form" method="post" action="rollback">
+							{% csrf_token %}
+							<div class="form-group">
+								<label>项目名称</label>
+								<div class="controls">
+									<select class="form-control" name="ProName" id="ProName"
+										required data-msg-required="请选择">
+										<option value>==请选择===</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>项目应用</label>
+								<div>
+									<select class="form-control" name="ProApp" id="ProApp" required
+										data-msg-required="请选择">
+										<option value>==请选择===</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>项目版本</label>
+								<div>
+									<select class="form-control" name="ProVersion" id="ProVersion"
+										required data-msg-required="请选择">
+										<option value>==请选择===</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>目标主机IP</label> <input class="form-control" name="HostIp"
+									required data-rule-hostip="true" data-msg-required="请输入IP地址">
+								<p class="help-block">
+									可以填写一个或多个</br>例:192.168.1.1 or 192.168.1.1:192.168.1.2
+								</p>
+							</div>
+							<div class="form-group">
+								<label>目标主机路径</label> <input class="form-control"
+									name="HostPath" required data-rule-destpath="true" data-msg-required="请输入项目路径">
+								<p class="help-block">请填写绝对路径</p>
+							</div>
+							<div class="row text-center">
+								<button type="submit" class="btn btn-default">执行回滚</button>
+								<button type="reset" class="btn btn-default">表单重置</button>
+							</div>
+						</form>
+					</div>
+					<!-- /.col-lg-6 (nested) -->
+				</div>
+				<!-- /.row (nested) -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+{% endblock %} {% block js%}
+<script>
+$(function () {
+    //默认绑定省
+    ProNameBind();
+    //绑定事件
+    $("#ProName").change( function () {
+        ProAppBind();
+    })
+    
+    $("#ProApp").change(function () {
+    	ProVersionBind();
+    })
+})
+function Bind(str) {
+    alert($("#ProName").html());
+    $("#ProName").val(str);
+
+
+}
+function ProNameBind() {
+    //清空下拉数据
+    $("#ProName").html("");
+    var str = "<option value>==请选择===</option>";
+   /* var items = '[{"Id":"1","Name":"OMS"},{"Id":"2","Name":"WMS"},{"Id":"3","Name":"SCM"}]';
+    items=jQuery.parseJSON(items);
+    $.each(items, function (i,item) {
+            str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+        });
+    $("#ProName").append(str);*/
+    $.ajax({
+        type: "POST",
+        url: "multiselect",
+        data: '{"MyColums":"ProName"}',
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            //从服务器获取数据进行绑定
+            $.each(data, function (i, item) {
+                str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+            })
+            //将数据添加到省份这个下拉框里面
+            $("#ProName").append(str);
+        },
+        error: function () { alert("Error"); }
+    });
+}
+function ProAppBind() {
+    var provice = $("#ProName").val();
+    //判断省份这个下拉框选中的值是否为空
+    if (provice == "") {
+        return;
+    }
+    $("#ProApp").html("");
+    var str = "<option value>==请选择===</option>";
+    /*items=jQuery.parseJSON(items);
+    $.each(items, function (i, item) {
+              str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+          });
+    $("#ProApp").append(str);*/
+    $.ajax({
+        type: "POST",
+        url: "multiselect",
+        data: '{"parentId":"'+provice+'","MyColums":"ProApp"}',
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            //从服务器获取数据进行绑定
+            $.each(data, function (i, item) {
+                str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+            })
+            //将数据添加到省份这个下拉框里面
+            $("#ProApp").append(str);
+        },
+        error: function () { alert("Error"); }
+    });
+}
+function ProVersionBind() {
+
+
+    var provice = $("#ProApp").val();;
+    //判断市这个下拉框选中的值是否为空
+    if (provice == "") {
+        return;
+    }
+    $("#ProVersion").html("");
+    var str = "<option value>==请选择===</option>";
+    /*var items = '[{"Id":"1","Name":"SCM-Web-170417"}]';
+    items=jQuery.parseJSON(items);
+    $.each(items, function (i, item) {
+        str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+    });
+    $("#ProVersion").append(str);*/
+    //将市的ID拿到数据库进行查询，查询出他的下级进行绑定
+    $.ajax({
+        type: "POST",
+        url: "multiselect",
+        data: '{"parentId":"'+provice+'","MyColums":"ProVersion"}',
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            //从服务器获取数据进行绑定
+            $.each(data, function (i, item) {
+                str += "<option value=" + item.Id + ">" + item.Name + "</option>";
+            })
+            //将数据添加到省份这个下拉框里面
+            $("#ProVersion").append(str);
+        },
+        error: function () { alert("Error"); }
+    });
+    //$.post("/Home/GetAddress", { parentiD: provice, MyColums: "Village" }, function (data) {  
+    //    $.each(data.Data, function (i, item) {
+    //        str += "<option value=" + item.Id + ">" + item.MyTexts + "</option>";
+    //    })
+    //    $("#Village").append(str);
+    //})
+}
+$(function(){
+    //jquery.validate
+	$("#rollback").validate({
+		submitHandler: function() {
+			//验证通过后 的js代码写在这里
+			//alert("提交事件!");
+			form.submit();
+			//debug:true
+		},
+		onfocusout: function(element) { $(element).valid(); }
+	});
+})
+//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+$.validator.setDefaults({
+	errorElement:'span',
+});
+
+//配置通用的默认提示语
+/*$.extend($.validator.messages, {
+	required: '必填',
+    equalTo: "请再次输入相同的值"
+});*/
+
+//IP地址及地址组
+jQuery.validator.addMethod("hostip", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var hostip = /^(((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d))(:(((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)))*$/;
+	return this.optional(element) || hostip.test(value);
+}, "请输入正确的IP地址");
+//项目路径
+jQuery.validator.addMethod("destpath", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var destpath = /^(\/[A-Za-z0-9_]+)+$/;
+	return this.optional(element) || destpath.test(value);
+}, "请输入正确的路径格式");
+</script>
+{% endblock %}

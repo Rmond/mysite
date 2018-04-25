@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>MY SITE</title>
+
+<!-- Bootstrap -->
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/common.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+{% block css%} {% endblock %}
+</head>
+<body>
+	<div class='head-band'>
+		<div class="head-content">
+			<a href="/app01/index" class="digg-logo"></a>
+			<div class="action-menu">
+				<a href="/app01/index" class="tb active">全部</a> <a
+					href="/app01/index" class="tb">42区</a> <a href="/app01/index"
+					class="tb">段子</a> <a href="/app01/index" class="tb">图片</a> <a
+					href="/app01/index" class="tb">挨踢1024</a> <a href="/app01/index"
+					class="tb">你问我答</a>
+			</div>
+			<div class="key-sera">
+				<form action="/app01/show" method="post" name="searchFrm2"
+					id="searchFrm2">
+					<input type="text" class="search-txt-s" name="words"
+						id="txtSearch2" autocomplete="off"
+						style="background-color: rgb(244, 244, 244);"> <a
+						href="javascript:;" class="i" name="searchBtn_2" id="searchBtn_3"><span
+						class="ico"></span></a>
+				</form>
+			</div>
+			<div class="action-nav">
+				<a href="javascript:;" class="login-btn-a" id="reg-link-a">注册</a> <a
+					href="javascript:;" class="login-btn-a" id="login-link-a">登录</a>
+			</div>
+			<div class="chat-notice-area"></div>
+		</div>
+	</div>
+	<div class="main-content-band">
+		<div class="main-content">
+			<div class="content-L">
+				<div class="nav-top-area">
+					<div class="child-nav">
+						<a href="#" hidefocus="false" class="hotbtn active icons"
+							id="hotts-nav-btn">最热</a> <a href="#" hidefocus="false"
+							class="newbtn" id="newest-nav-btn">最新</a> <a href="#"
+							hidefocus="false" class="personbtn" id="person-nav-btn">人类发布</a>
+					</div>
+					<div class="sort-nav">
+						<a href="#" hidefocus="false" class="active hotbtn"
+							id="sort-nav-btn">即时排序</a> <a href="#" hidefocus="false"
+							class="newbtn" id="sort24-nav-btn">24小时</a> <a href="#"
+							hidefocus="false" class="newbtn" id="sort3-nav-btn">3天</a>
+					</div>
+				</div>
+				<div class="content-list" id="content-list">{% block content%}
+					{% endblock %}</div>
+			</div>
+			<div class="content-R">
+				<div class="chat-area" id="chat-area">
+					<div class="chat" data-pswp-uid="1">
+						<div class="chat-box">
+							<div class="chat-main-box">
+								<div class="chat-main-header">
+									<div class="tab-public active"
+										style="width: 100%; border-top-radius: 4px; border-bottom: 1px #0080ff solid">公共聊天</div>
+								</div>
+								<div class="chat-public-box">
+									<div id="chat-public-content" class="chat-public-content">
+									    <ul id="user-message">
+									    {% block msg %}
+									    {% endblock %}
+									    </ul>
+										</div>
+									</div>
+									<div class="chat-sender">
+										<div class="input-group">
+											<textarea name="text" id="textValue"></textarea>
+											<span class="input-group-btn">
+												<button class="btn-send" type="button" onclick="getText();">发送</button>
+											</span>
+										</div>
+										<!-- /input-group -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='pg-footer'></div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<!-- <script src="/static/js/common.js"></script> -->
+		<script>
+			function getText() {
+				var showText = document.getElementById("textValue").value;
+				if ( showText !== "" ) {
+	        		showText = showText.replace(/&/gi,'&amp;').replace(/</gi,'&lt;').replace(/>/gi,'&gt;').replace('\n','<br\>');
+	        		document.getElementById("textValue").value="";
+	        		putText(showText);
+				}
+	        	var top = document.getElementById("chat-public-content")
+	        	top.scrollTop = top.scrollHeight;
+			}
+			
+			function putText(text){
+				var msgtime = new Date().toLocaleTimeString();
+				$.ajax(
+						{type: "GET",
+				        url: "/app01/sendMsg",
+				        async: false,
+				        data: {
+				        	'text':text,
+				        	'msgtime':msgtime,
+				        },
+				        success: function(resp){
+				        	 $("#user-message").html(resp); 
+				        }
+				});
+			}
+			
+			function syncText(text){
+				$.ajax(
+						{type: "GET",
+				        url: "/app01/sendMsg",
+				        data: {
+				        	'text':text,
+				        	},
+				        success: function(resp){
+				        	 $("#user-message").html(resp); 
+				        }
+				});
+			}
+			
+		</script>
+		{% block js %} {% endblock %}
+</body>
+</html>

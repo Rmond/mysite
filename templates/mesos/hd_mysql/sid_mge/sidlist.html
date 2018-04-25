@@ -1,0 +1,595 @@
+{% extends "mesos/main-layout.html" %}  {% block css%}
+<link href="/static/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+{% endblock %} {% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Mysql数据库实例列表</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+
+				<table width="100%"
+					class="table table-striped table-bordered table-hover"
+					id="sidlist">
+<a class="btn btn-sm btn-primary-outline" data-toggle="modal" data-target="#sidaddModal" id="add-row"><i class="fa fa-plus"></i>添加数据库实例</a>
+					<thead>
+					<tr><span style="color:red;">{{error}}</span></tr>
+						<tr>
+							<th>No</th>
+							<th>项目名称</th>
+							<th>实例名称</th>
+							<th>主机地址</th>
+							<th>空间大小</th>
+							<th>BufferPool</th>
+							<th>端口号</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for sidinfo in sidlist%}
+						<tr>
+							<td></td>
+							<td>{{sidinfo.appname}}</td>
+							<td>{{sidinfo.sidname}}</td>
+							<td>{{sidinfo.hostip}}</td>
+							<td>{{sidinfo.data_size}}G</td>
+							<td>{{sidinfo.buffer_pool}}G</td>
+							<td>{{sidinfo.port}}</td>
+							<td><a data-toggle="modal" data-target="#sidinfoModal" class="look">详情</a>
+							<a class="update" onclick="Show_Upmodal(this)">升级</a>
+							<a href="javascript:void(0);" class="delete">删除</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+ <!-- /.row -->
+ <!--sidadd Modal -->
+           <div class="modal fade" id="sidaddModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">
+                       添加数据库实例   <button type="button" class="close" data-dismiss="modal">×</button>  
+                        </div>
+                   <form id="sidadd" role="form" method="post" action="{% url 'hd_mysql:sid_add' %}" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        	<div class="form-group">
+								<label for="appname" class="col-md-4 control-label">项目名称</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="AppName" id="appname" required data-rule-appname="true" data-msg-required="请输入主机名"> </div>
+						</div>
+						  <div class="form-group">
+								<label for="mhostip" class="col-md-4 control-label">主库IP</label>
+								 <div class="col-md-6">
+								 <select class="form-control" name="Mhostip" id="mhostip" onchange="hostinfo_get($(this).children('option:selected').val(),'#m')" required
+										data-rule-hostidle="true" data-msg-required="请选择">
+										<option value>===Master==</option>
+									</select>
+								 </div>
+							</div>
+							<div class="form-group">
+				              <span class="col-md-5 control-label" style="margin:-7px;"><small>剩余内存</small></span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="m_mem_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="m_mem_text"></small>     
+						</div>
+							<div class="form-group">
+							 <span class="col-md-5 control-label" style="margin:-7px;">
+							<small >剩余数据容量</small>
+							</span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="m_vg_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="m_vg_text"></small>     
+						</div>
+		                <div class="form-group">
+								<label for="shostip" class="col-md-4 control-label">从库IP</label>
+								 <div class="col-md-6">
+								 <select class="form-control" name="Shostip" id="shostip" onchange="hostinfo_get($(this).children('option:selected').val(),'#s')" required
+										data-rule-hostidle="true" data-msg-required="请选择">
+										<option value>===Slave===</option>
+									</select>
+								 </div>
+						</div>
+						<div class="form-group">
+				              <span class="col-md-5 control-label" style="margin:-7px;"><small>剩余内存</small></span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="s_mem_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="s_mem_text"></small>     
+						</div>
+					 <div class="form-group">
+							 <span class="col-md-5 control-label" style="margin:-7px;">
+							<small >剩余数据容量</small>
+							</span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="s_vg_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="s_vg_text"></small>     
+						</div>
+						<div class="form-group">
+								<label for="lvsize" class="col-md-4 control-label">初始容量(G)</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="LvSize" id="lvsize" placeholder="仅支持整数" required data-rule-datasize="true" data-rule-datafree="true" data-msg-required="请输入数据量"> </div>
+						</div>
+						<div class="form-group">
+								<label for="bf_pool" class="col-md-4 control-label">Buffer Pool大小(G)</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Bf_Pool" id="bf_pool" value=4 required data-rule-datasize="true"  data-rule-memoryfree="true" data-msg-required="请输入Buffer Pool大小"> </div>
+						</div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭 </button>  
+                            <button type="submit" class="btn btn-primary">保存 </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+  <!--sidinfo Modal -->
+             <div class="modal fade" id="sidinfoModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">
+                       数据库实例   <button type="button" class="close" data-dismiss="modal">×</button>  
+                        </div>
+                   <form class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        <div class="form-group">
+								<label class="col-md-4 control-label">实例名称:</label>
+								<label class="col-md-2 control-label" id="sidname"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">主机地址:</label>
+								<label class="col-md-2 control-label" id="hostip"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">空间大小:</label>
+								<label class="col-md-2 control-label" id="size"></label>
+						</div>
+					<div class="form-group">
+								<label class="col-md-4 control-label">Buffer Pool:</label>
+								<label class="col-md-2 control-label" id="buffer_pool"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">Socket:</label>
+								<label class="col-md-2 control-label" id="socket"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">端口号:</label>
+								<label class="col-md-2 control-label" id="port"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">Root密码:</label>
+								<label class="col-md-2 control-label" id="root"></label>
+						</div>
+						<div class="form-group">
+								<label class="col-md-4 control-label">Repl密码:</label>
+								<label class="col-md-2 control-label" id="repl"></label>
+						</div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭 </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+       
+ <!--sidupdate Modal -->
+           <div class="modal fade" id="sidupdateModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">
+                       升级数据库实例配置  <button type="button" class="close" data-dismiss="modal">×</button>  
+                        </div>
+                   <form id="sidupdate" role="form" method="post" action="{% url 'hd_mysql:sid_update' %}" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        	<div class="form-group">
+								<label for="up_appname" class="col-md-4 control-label">项目名称</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Up_AppName" id="up_appname" readonly> </div>
+						</div>
+						  <div class="form-group">
+								<label for="mhostip" class="col-md-4 control-label">主库IP</label>
+                                <p class="col-md-3 form-control-static" id="up_mhostip"></p>
+							</div>
+							<div class="form-group">
+				              <span class="col-md-5 control-label" style="margin:-7px;"><small>剩余内存</small></span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="up_m_mem_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="up_m_mem_text"></small>     
+						</div>
+							<div class="form-group">
+							 <span class="col-md-5 control-label" style="margin:-7px;">
+							<small >剩余数据容量</small>
+							</span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="up_m_vg_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="up_m_vg_text"></small>     
+						</div>
+		                <div class="form-group">
+								<label for="shostip" class="col-md-4 control-label">从库IP</label>
+								<p class="col-md-3 form-control-static" id="up_shostip"></p>
+						</div>
+						<div class="form-group">
+				              <span class="col-md-5 control-label" style="margin:-7px;"><small>剩余内存</small></span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="up_s_mem_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="up_s_mem_text"></small>     
+						</div>
+					 <div class="form-group">
+							 <span class="col-md-5 control-label" style="margin:-7px;">
+							<small >剩余数据容量</small>
+							</span>
+							  <div class="col-md-4">
+								 <div class="progress progress_sm">
+                              <div class="progress-bar" role="progressbar" id="up_s_vg_prgbar"></div>
+                            </div>
+                            </div>                           
+                               <small id="up_s_vg_text"></small>     
+						</div>
+						<div class="form-group">
+								<label for="up_lvsize" class="col-md-4 control-label">数据容量(G)</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Up_LvSize" id="up_lvsize" placeholder="仅支持整数" required data-rule-datasize="true" data-rule-up_datafree="true" data-rule-add_datafree="true" data-msg-required="请输入数据量"> </div>
+						</div>
+						<div class="form-group">
+								<label for="up_bf_pool" class="col-md-4 control-label">Buffer Pool大小(G)</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Up_Bf_Pool" id="up_bf_pool" required data-rule-datasize="true" data-rule-up_memoryfree="true" data-msg-required="请输入Buffer Pool大小"> </div>
+						</div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭 </button>  
+                            <button type="submit" class="btn btn-primary">保存 </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+{% endblock %} {% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var table = $('#sidlist')
+								.DataTable(
+										{
+											"lengthChange" : false,
+											"oLanguage" : {//国际语言转化
+												"oAria" : {
+													"sSortAscending" : " - click/return to sort ascending",
+													"sSortDescending" : " - click/return to sort descending"
+												},
+												"sLengthMenu" : "显示 _MENU_ 记录",
+												"sZeroRecords" : "对不起，查询不到任何相关数据",
+												"sEmptyTable" : "未有相关数据",
+												"sLoadingRecords" : "正在加载数据-请等待...",
+												"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+												"sInfoEmpty" : "当前显示0到0条，共0条记录",
+												"sInfoFiltered" : "（数据库中共为 _MAX_ 条记录）",
+												"sProcessing" : "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+												"sSearch" : "模糊查询：",
+												"sUrl" : "",
+												//多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+												"oPaginate" : {
+													"sFirst" : "首页",
+													"sPrevious" : " 上一页 ",
+													"sNext" : " 下一页 ",
+													"sLast" : " 尾页 "
+												}
+											},
+										"aoColumns": [//设定各列宽度   
+													            {"sWidth": "10px","orderable":false},
+													            {"sWidth": "130px"},
+													            {"sWidth": "130px"},
+													            {"sWidth": "130px"},
+													            {"sWidth": "130px","orderable":false},
+													            {"sWidth": "90px","orderable":false},
+													            {"sWidth": "90px","orderable":false},
+													            {"sWidth": "130px","orderable":false},
+													            ],
+										"order": [[1,"asc"]]
+										});
+						table.on('order.dt search.dt', function() {
+							table.column(0, {
+								search : 'applied',
+								order : 'applied'
+							}).nodes().each(function(cell, i) {
+								cell.innerHTML = i + 1;
+							});
+						}).draw();
+   $('#sidlist tbody').on( 'click', 'a.delete', function () {
+							  if (confirm("请确定已在主机中删除此项目实例")) {
+								  var appname = $(this).parents('tr').children().eq(1).text();
+								  $.ajax(
+											{type: "POST",
+									        url: "{% url 'hd_mysql:sid_del' %}",
+									        data: {
+									        	"AppName":appname,
+									        	},
+									        success: function(result){
+									        	$('#sidlist').find('tr').each(function () {
+												if(appname==$(this).children().eq(1).text()){
+										              table.row($(this)).remove().draw(false);
+														}
+													});
+									        	alert(result);
+									        },
+									});
+						    } 
+						});
+					});
+</script>
+<script>
+$("#add-row").click(function(){
+	if ($("#mhostip option").length == 1){
+	  $.ajax(
+			 {type: "POST",
+		       url: "{% url 'hd_mysql:hostip_ajaxget' %}",
+		       success: function(data){
+			    	  var obj = eval('(' + data + ')');
+			    	  for (i in obj.mhostip){
+			    		  $("#mhostip").append("<option value="+obj.mhostip[i]+">"+obj.mhostip[i]+"</option>")
+			    	  }
+			    	  for (j in obj.shostip){
+			    		  $("#shostip").append("<option value="+obj.shostip[j]+">"+obj.shostip[j]+"</option>")
+			    	  }
+		       }
+				});
+	}
+  });
+  
+function hostinfo_get(value,flag){
+	 //获取被选中的option标签
+	if(value != ""){
+	  $.ajax(
+				{
+				type: "POST",
+		        url: "{% url 'hd_mysql:hostinfo_get' %}",
+		        data: {
+		        	"HostIP":value,
+		        	},
+		      success: function(data){
+                 obj = eval('(' + data + ')');
+                 Add_Prgbar(flag,obj);
+		      },
+				});
+          }
+	}
+  
+$('#sidlist tbody').on( 'click', 'a.look', function () {
+	  var Sidname = $(this).parents('tr').children().eq(2).text();
+	  $.ajax(
+				{
+					type: "POST",
+		        url: "{% url 'hd_mysql:sidinfo_get' %}",
+		        data: {
+		        	"Sidname":Sidname,
+		        	},
+		      success: function(data){
+                   obj = eval('(' + data + ')');
+ 		    	   $("#sidname").text(obj.sidname);
+ 		    	   $("#hostip").text(obj.hostip);
+ 		    	   $("#size").text(obj.size+"G");
+ 		    	  $("#buffer_pool").text(obj.buffer_pool+"G");
+ 		    	   $("#socket").text(obj.socket);
+ 		    	   $("#port").text(obj.port);
+ 		    	   $("#root").text(obj.root);
+ 		    	   $("#repl").text(obj.repl);
+		      },
+				});
+		});
+$('#sidlist tbody').on( 'click', 'a.update', function () {
+	  var appname = $(this).parents('tr').children().eq(1).text();
+	  $.ajax(
+				{
+					type: "POST",
+		        url: "/hd_mysql/appinfoget",
+		        data: {
+		        	"AppName":appname,
+		        	},
+		      success: function(data){
+                 obj = eval('(' + data + ')');
+                 $("#up_appname").val(appname);
+                 $("#up_mhostip").text(obj[0].hostip);
+                 $("#up_shostip").text(obj[1].hostip);
+                 $("#up_lvsize").val(obj[0].datasize);
+                 $("#up_bf_pool").val(obj[0].bufferpool);
+                 window.old_lvsize=obj[0].datasize;
+                 Add_Prgbar("#up_m",obj[0]);
+                 Add_Prgbar("#up_s",obj[1]);
+		      },
+				});
+		});
+		
+function Add_Prgbar(flag,obj){
+    $(flag+"_mem_prgbar").width(obj.memory_per+"%");
+    $(flag+"_vg_prgbar").width(obj.vginfo_per+"%");
+    $(flag+"_mem_text").text(obj.memory_per+"%Free");
+    $(flag+"_vg_text").text(obj.vginfo_free+"G");
+    $(flag+"_mem_prgbar").removeClass("bg-red bg-orange bg-green");
+    $(flag+"_vg_prgbar").removeClass("bg-red bg-orange bg-green");
+    if(obj.memory_per<20){
+    $(flag+"_mem_prgbar").addClass("bg-red");
+    }
+    else if ((obj.memory_per<50)){
+   	 $(flag+"_mem_prgbar").addClass("bg-orange");
+    }else{
+   	 $(flag+"_mem_prgbar").addClass("bg-green");
+    }
+    if(obj.vginfo_per<20){
+        $(flag+"_vg_prgbar").addClass("bg-red");
+        }
+        else if ((obj.vginfo_per<50)){
+       	 $(flag+"_vg_prgbar").addClass("bg-orange");
+        }else{
+       	 $(flag+"_vg_prgbar").addClass("bg-green");
+        }
+};
+
+function Show_Upmodal(obj){
+	var appname = $(obj).parents('tr').children().eq(1).text();
+	 $.ajax(
+				{
+					type: "POST",
+		        url: "/hd_mysql/uphostidlechk",
+		        data: {
+		        	"AppName":appname,
+		        	},
+		      success: function(data){
+		    	 if (data==0){
+		    		 alert("主机正忙，请稍后!");
+		    	 }
+		    	 else{
+		    		 $('#sidupdateModal').modal('show');
+		         }
+		      },
+				});
+};
+
+$("#sidadd").validate({
+    submitHandler: function() {
+    	form.submit();
+   },
+    onfocusout: function(element) { $(element).valid(); },
+});
+
+$("#sidupdate").validate({
+    submitHandler: function() {
+    	form.submit();
+   },
+    onfocusout: function(element) { $(element).valid(); },
+});
+
+jQuery.validator.addMethod("datafree", function (value, element) {
+	   var result = false;
+	   var mhostip = $('#mhostip').children('option:selected').val();
+	   var shostip = $('#shostip').children('option:selected').val();
+	   $.ajaxSetup({async:false});
+	   var param = {"LvSize":value,"Mhostip":mhostip,"Shostip":shostip};
+	   $.post("{% url 'hd_mysql:vginfo_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "卷组空间不足，请减少数据量大小!");
+
+jQuery.validator.addMethod("memoryfree", function (value, element) {
+	   var result = false;
+	   var mhostip = $('#mhostip').children('option:selected').val();
+	   var shostip = $('#shostip').children('option:selected').val();
+	   $.ajaxSetup({async:false});
+	   var param = {"BufferPool":value,"Mhostip":mhostip,"Shostip":shostip};
+	   $.post("{% url 'hd_mysql:memory_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "内存不足40%，请减少BufferPool大小!");
+
+jQuery.validator.addMethod("up_datafree", function (value, element) {
+	   var result = false;
+	   var appname = $('#up_appname').val();
+	   var mhostip = $('#up_mhostip').text();
+	   var shostip = $('#up_shostip').text();
+	   $.ajaxSetup({async:false});
+	   var param = {"LvSize":value,"Mhostip":mhostip,"Shostip":shostip,"AppName":appname};
+	   $.post("{% url 'hd_mysql:up_vginfo_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "卷组空间不足，请减少数据量大小!");
+
+jQuery.validator.addMethod("add_datafree", function (value, element) {
+	return this.optional(element) || value>=window.old_lvsize;
+}, "只允许增加数据量");
+
+jQuery.validator.addMethod("up_memoryfree", function (value, element) {
+	   var result = false;
+	   var appname = $('#up_appname').val();
+	   var mhostip = $('#up_mhostip').text();
+	   var shostip = $('#up_shostip').text();
+	   $.ajaxSetup({async:false});
+	   var param = {"BufferPool":value,"Mhostip":mhostip,"Shostip":shostip,"AppName":appname};
+	   $.post("{% url 'hd_mysql:up_memory_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "内存不足40%，请减少BufferPool大小!");
+
+jQuery.validator.addMethod("datasize", function (value, element) {
+	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+	var text = /^[2-9]+$/;
+	return this.optional(element) || text.test(value);
+}, "只允许输入大于1整数");
+
+jQuery.validator.addMethod("appname", function (value, element) {
+	   var result = false;
+	   $.ajaxSetup({async:false});
+	   var param = {"AppName":value};
+	   $.post("{% url 'hd_mysql:appname_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "项目名已存在!");
+
+jQuery.validator.addMethod("hostidle", function (value, element) {
+	   var result = false;
+	   $.ajaxSetup({async:false});
+	   var param = {"HostIP":value};
+	   $.post("{% url 'hd_common:hostidle_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+}, "主机正在忙，请稍后!");
+</script>
+{% endblock %}

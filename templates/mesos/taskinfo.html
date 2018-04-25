@@ -1,0 +1,63 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+{% endblock %}
+{% block content %}
+<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">任务详情</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+  <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                        </div>
+                        <div class="panel-body">
+                        <div class="col-lg-6 col-lg-offset-3">
+                        <font size="3"><strong>任务名称:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{user_task.taskname}}</strong></font>
+                         <br></br>
+                        <font size="3"><strong>主机或组:&nbsp;&nbsp;</strong></font>
+                         <br></br>
+                        <div style="width:510px;word-wrap:break-word;"><font><strong>{{user_task.hosts}}</strong></font></div>
+                        <br>
+                        {% if user_task.shell_cmd %}
+                        <font size="3"><strong>shell命令:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{user_task.shell_cmd}}</strong></font>
+                        <br></br>
+                        {% endif %}
+                        {% if user_task.soft_list %}
+                        <font size="3"><strong>软件列表:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{user_task.soft_list}}</strong></font>
+                        <br></br>
+                        {% endif %}
+                        <font size="3"><strong>开始时间:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{user_task.star_time|date:"Y-m-d H:i"}}</strong></font>
+                        <br></br>
+                        <font size="3"><strong>结束时间:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{user_task.date_done|date:"Y-m-d H:i"}}</strong></font>
+                        <br></br>
+                        <font size="3"><strong>执行结果:&nbsp;&nbsp;</strong></font>
+                        <br>
+                            {%for line in result %}
+                             <div style="width:510px;word-wrap:break-word;">{{line}}</div>
+                             <br>
+                            {%endfor%}
+                          </div>  
+                        </div>
+                 <div class="panel-footer text-center">
+                     {% if user_task.shell_cmd %}
+                     <a class="btn btn-primary" href="/hd_mesos/tasklist/shell" role="button">返回</a>
+                    {% elif user_task.soft_list %}
+                   <a class="btn btn-primary" href="/hd_mesos/tasklist/yum" role="button">返回</a>
+                    {% else %}
+                    <a class="btn btn-primary" href="/hd_mesos/tasklist" role="button">返回</a>
+                    {% endif%}
+                        </div>
+                    </div>
+                </div>
+   </div>
+{% endblock %}
+{% block js%}
+{% endblock %}

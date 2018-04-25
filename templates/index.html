@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for msg in pagecontent %}
+ <div class="article block untagged mb15"> 
+      	 {{msg|safe}}
+ </div>
+{% endfor %}
+<nav style="text-align: center">
+  <ul class="pagination pagination-lg">
+    <li><a href="/app01/index">首页</a></li>
+    <li id='prepage'><a href="/app01/index/{{nowpage|add:-1}}">&laquo;</a></li>
+{% for page in pagesNum %} 
+   {{page|safe}}
+{% endfor %}
+	<li><a href="/app01/index/{{nowpage|add:1}}">&raquo;</a></li>
+  </ul>
+</nav>
+{% endblock %}
+{% block msg %}
+{% for str in msg %} 
+   {{str|safe}}
+{% endfor %}
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).ready(function(){
+    	if( {{nowpage}} < 2 ){
+    		$('#prepage').addClass('disabled');
+    	}
+    	//setInterval("syncText()",5000);
+    })
+    </script>
+{% endblock %}

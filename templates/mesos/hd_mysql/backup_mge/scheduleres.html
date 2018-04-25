@@ -1,0 +1,43 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+{% endblock %}
+{% block content %}
+<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">备份详情</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+  <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                        </div>
+                        <div class="panel-body">
+                        <div class="col-lg-6 col-lg-offset-3">
+                        <font size="3"><strong>名称:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{shd_res.mysql_bk_name}}</strong></font>
+                         <br></br>
+                        <font size="3"><strong>开始时间:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{shd_res.star_time|date:"Y-m-d H:i"}}</strong></font>
+                        <br></br>
+                        <font size="3"><strong>结束时间:&nbsp;&nbsp;</strong></font>
+                        <font><strong>{{shd_res.stop_time|date:"Y-m-d H:i"}}</strong></font>
+                        <br></br>
+                        <font size="3"><strong>执行结果:&nbsp;&nbsp;</strong></font>
+                           <p>
+                            {%for line in result %}
+                            {{line}}<br>
+                            {%endfor%}
+                            </p>
+                          </div>  
+                        </div>
+                 <div class="panel-footer text-center">
+                    <a class="btn btn-primary" href="/hd_mysql/scheduleres" role="button">返回</a>
+                        </div>
+                    </div>
+                </div>
+   </div>
+{% endblock %}
+{% block js%}
+{% endblock %}

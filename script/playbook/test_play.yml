@@ -1,0 +1,6 @@
+- hosts: "{{ hosts }}"
+  gather_facts: false
+
+  tasks:
+    - name: Yum Install Soft
+      yum: name=vim state=absent

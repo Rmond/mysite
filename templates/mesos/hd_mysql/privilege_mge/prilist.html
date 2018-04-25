@@ -1,0 +1,246 @@
+{% extends "mesos/main-layout.html" %} {% block css%}
+<link href="/static/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+{% endblock %} {% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Mysql授权记录</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+
+				<table width="100%"
+					class="table table-striped table-bordered table-hover"
+					id="pri-info">
+					<thead>
+						<tr>
+							<th>用户名</th>
+							<th>数据库主机</th>
+							<th>授权日期</th>
+							<th>被授权用户</th>
+							<th>数据库</th>
+							<th>数据表</th>
+							<th>权限</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+				</table>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+            <!-- 模态框（Modal） -->  
+            <div class="modal fade" id="revokeModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">
+                         <label id="mysqluser" style="font-size:30px;"></label>
+                            <button type="button" class="close" data-dismiss="modal">  
+                  ×  
+            </button>  
+                        </div>
+                   <form id="prirevoke" role="form" method="post" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        <div class="form-group">
+								<label for="login_host" class="col-md-4 control-label">数据库登录主机IP</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Login_host" id="login_host" value="localhost" required
+							data-rule-loginhost="true" data-msg-required="请输入数据库登录主机IP">
+						<p class="help-block">默认以localhost登录</p> </div>
+						</div>
+	                   <div class="form-group">
+								<label for="login_port" class="col-md-4 control-label">数据库登录端口</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Login_port" id="login_port" value="3306" required
+							data-msg-required="请输入数据库登录端口">
+						<p class="help-block">默认以3306端口登录</p> </div>
+						</div>
+						 <div class="form-group">
+								<label for="login_user" class="col-md-4 control-label">数据库用户</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Login_user" id="login_user" value="root" required
+							data-msg-required="请输入数据库登录用户">
+						<p class="help-block">默认以root用户登录</p> </div>
+						</div>
+						  <div class="form-group">
+								<label for="login_pass" class="col-md-4 control-label">数据库密码</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Login_pass" type="password" id="login_pass" required data-msg-required="请输入密码"> </div>
+						</div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dataclose">关闭  
+            </button>  
+                            <button type="submit" class="btn btn-primary" id="datasubmit">  
+               保存
+            </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+<!-- /.row -->
+{% endblock %} {% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var table = $('#pri-info')
+								.DataTable(
+										{
+											"responsive" : true,
+											"lengthChange" : false,
+											"oLanguage" : {//国际语言转化
+												"oAria" : {
+													"sSortAscending" : " - click/return to sort ascending",
+													"sSortDescending" : " - click/return to sort descending"
+												},
+												"sLengthMenu" : "显示 _MENU_ 记录",
+												"sZeroRecords" : "对不起，查询不到任何相关数据",
+												"sEmptyTable" : "未有相关数据",
+												"sLoadingRecords" : "正在加载数据-请等待...",
+												"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+												"sInfoEmpty" : "当前显示0到0条，共0条记录",
+												"sInfoFiltered" : "（数据库中共为 _MAX_ 条记录）",
+												"sSearch" : "模糊查询：",
+												"sUrl" : "",
+												//多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+												"oPaginate" : {
+													"sFirst" : "首页",
+													"sPrevious" : " 上一页 ",
+													"sNext" : " 下一页 ",
+													"sLast" : " 尾页 "
+												}
+											},
+					            		"processing":true,
+					            		"serverSide":true,
+					            		"ajax":{
+					            			url: '/hd_mysql/prilist',
+					            			type: 'POST'
+					            		},
+					            		"ordering": false,
+					            	    "columnDefs": [
+					            	             {					            	                      
+					            	            	      "targets" : 0,
+					            	                      "data": null,
+					            	                      "render": function (data, type, row) {
+					            	                          return row[0]
+					            	                      },
+					            	                      "sWidth": "60px",
+					            	             },
+					            	            {"targets" : 1,//操作按钮目标列
+					            	              "data" : null,
+					            	              "render" : function(data, type, row) {
+					            	                   return row[2];
+					            	                 },
+					            	              "swidth": "100px",
+					            	            },
+					            	            {"targets" : 2,//操作按钮目标列
+					            		          "data" : null,
+					            		          "render" : function(data, type, row) {
+					            		                return row[3];
+					            		             },
+					            		          "sWidth": "110px",
+					            	            },
+					            		       {"targets" : 3,//操作按钮目标列
+					            			     "data" : null,
+					            			     "render" : function(data, type, row) {
+					            			           return row[1];
+					            			          },
+					            			     "sWidth": "200px",
+					            		       },
+					            			   {"targets" : 4,//操作按钮目标列
+					            				 "data" : null,
+					            				 "render" : function(data, type, row) {
+					            				        return row[4];
+					            				        },
+					            				 "sWidth": "60px",
+					            			    },
+						            			{"targets" : 5,//操作按钮目标列
+						            				 "data" : null,
+						            				 "render" : function(data, type, row) {
+						            				        return row[5];
+						            				        },
+						            				 "sWidth": "60px",
+						            			 },
+							            	     {"targets" : 6,//操作按钮目标列
+						            				 "data" : null,
+						            				 "render" : function(data, type, row) {
+						            				        return row[6];
+						            				        },
+						            				 "sWidth": "60px",
+						            			 },
+					            			    {"targets" : 7,//操作按钮目标列
+					            			     "data" : null,
+					            			     "sClass": "text-center",
+					            				 "render" : function(data, type, row) {
+					            					   var html = '<a class="revoke" data-toggle="modal" data-target="#revokeModal">回收</a>';
+					            					   return html;
+					            					    },
+					            				 "sWidth": "60px",
+					            	             }
+					            	    ]
+										});
+						$('#pri-info tbody').on( 'click', 'a.revoke', function () {
+							 window.mysqlhost = $(this).parents('tr').children().eq(1).text();
+							 window.mysqluser = $(this).parents('tr').children().eq(3).text();
+							 window.database =  $(this).parents('tr').children().eq(4).text();
+							 window.tables =  $(this).parents('tr').children().eq(5).text();
+							 $('#mysqluser').text(window.mysqluser+" "+window.database);
+				 });
+					});
+	
+function PriRevoke(){
+	  if (confirm("确定要回收此用户权限？")) {
+	  	  $.ajax(
+				 {type: "POST",
+			       url: "prirevoke",
+			       data:{
+			    	   "mysqlhost" : window.mysqlhost,
+			    	   "mysqluser" : window.mysqluser,
+			    	   "database" : window.database,
+			    	   "tables" : window.tables,
+			    	   "login_host":$('#login_host').val(),
+			    	   "login_port":$('#login_port').val(),
+			    	   "login_user": $('#login_user').val(),
+			    	   "login_pass": $('#login_pass').val(),
+			       },
+			       success: function(data){
+			    	   $('#revokeModal').modal('hide');
+			    	   alert(data);
+			    	   window.location.reload();
+			       },
+					});
+	  }
+	    }
+validator=$("#prirevoke").validate({
+		errorElement:'span',
+        submitHandler: function() {PriRevoke();},
+	    onfocusout: function(element) { $(element).valid(); },
+});	
+
+	//IP地址
+	jQuery.validator.addMethod("hostip", function (value, element) {
+		//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+		var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+		return this.optional(element) || hostip.test(value);
+	}, "请输入正确的IP地址");
+</script>
+{% endblock %}

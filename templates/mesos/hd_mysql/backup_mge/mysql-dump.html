@@ -1,0 +1,118 @@
+{% extends "mesos/main-layout.html" %} {% block css%} {% endblock %}
+{%block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">导出数据</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<form id="mysqldump" role="form" method="post" action="mysqldump">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading"></div>
+				<div class="panel-body">
+					{% csrf_token %}
+					<div class="form-group col-lg-12">
+						<label>数据库IP</label> <input class="form-control"
+							name="HostIP" required data-rule-hostip="true" data-rule-master="true"
+							data-msg-required="请输入IP地址">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>数据库登录用户名</label> <input class="form-control"
+							name="login_user" required
+							data-msg-required="请输入数据库登录用户">					</div>
+					<div class="form-group col-lg-6">
+						<label>数据库登录密码</label> <input class="form-control"
+							name="login_pass" type="password" required data-msg-required="请输入数据库登录密码">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>数据库登录端口</label> <input class="form-control"
+							name="login_port" value="3306" required
+							data-msg-required="请输入数据库登录端口">
+						<p class="help-block">默认以3306端口登录</p>
+					</div>
+					<div class="form-group col-lg-6">
+						<label>数据库登录主机IP</label> <input class="form-control"
+							name="login_host" value="127.0.0.1" required
+							data-rule-hostip="true" data-msg-required="请输入数据库登录主机IP">
+						<p class="help-block">默认以127.0.0.1登录</p>
+					</div>
+					<div class="form-group col-lg-6">
+						<label>备份数据库</label> <input class="form-control"
+							name="bk_database" required
+							data-msg-required="请输入数据库登录主机IP">
+					</div>
+				  <div class="form-group col-lg-6">
+						<label>备份数据表</label> <input class="form-control"
+							name="bk_table">
+						<p class="help-block">留空为全备</p>
+					</div>
+				 <div class="form-group col-lg-12">
+						<label>备份路径</label> <input class="form-control"
+							name="bk_path" required
+							data-rule-destpath="true" data-msg-required="请输入备份文件地址">
+						<p class="help-block">请确保路径存在</p>
+					</div>
+					<!-- /.row (nested) -->
+	                  <div class="col-lg-12 text-center">
+				<button type="submit" class="btn btn-default">执行</button>
+				<button type="reset" class="btn btn-default">重置</button>
+				             </div>
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.col-lg-6 -->
+	</form>
+</div>
+<!-- /.row-->
+{% endblock %} {% block js%}
+<script src="/static/jquery-validate/jquery.validate.js"></script>
+<script src="/static/jquery-validate/messages_zh.js"></script>
+<script>
+	$(function() {
+		//jquery.validate
+		$("#mysqldump").validate({
+			submitHandler : function() {
+				//验证通过后 的js代码写在这里
+				//alert("提交事件!");
+				form.submit();
+				//debug:true
+			},
+			onfocusout : function(element) {
+				$(element).valid();
+			},
+			errorPlacement: function(error, element) { //错误信息位置设置方法
+				error.appendTo( element.parent() ); //这里的element是录入数据的对象
+				},
+		});
+	})
+	//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+	$.validator.setDefaults({
+		errorElement : 'span',
+	});
+
+	//配置通用的默认提示语
+	/*$.extend($.validator.messages, {
+	 required: '必填',
+	 equalTo: "请再次输入相同的值"
+	 });*/
+
+	//IP地址
+	jQuery.validator
+			.addMethod(
+					"hostip",
+					function(value, element) {
+						//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+						var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+						return this.optional(element) || hostip.test(value);
+					}, "请输入正确的IP地址");
+	 jQuery.validator.addMethod("destpath", function (value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var destpath = /^(\/[A-Za-z0-9_]+)+$/;
+			return this.optional(element) || destpath.test(value);
+		}, "请输入正确的路径格式");
+</script>
+{% endblock %}

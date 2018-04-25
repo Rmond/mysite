@@ -1,0 +1,173 @@
+{% extends "mesos/main-layout.html" %} {% block css%} {% endblock %}
+{%block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Mysql用户创建及授权</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<form id="userpri" role="form" method="post" action="userpri">
+		<div class="col-lg-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">数据库连接信息</div>
+				<div class="panel-body">
+					{% csrf_token %}
+					<div class="form-group">
+						<label>Ansible连接主机IP</label> <input class="form-control"
+							name="HostIp" required data-rule-hostip="true" data-rule-master="true"
+							data-msg-required="请输入IP地址">
+					</div>
+					<div class="form-group">
+						<label>数据库登录用户</label> <input class="form-control"
+							name="login_user" value="root" required
+							data-msg-required="请输入数据库登录用户">
+						<p class="help-block">默认以root用户登录</p>
+					</div>
+					<div class="form-group">
+						<label>数据库登录密码</label> <input class="form-control"
+							name="login_pass" type="password" required data-msg-required="请输入数据库登录密码">
+					</div>
+					<div class="form-group">
+						<label>数据库登录端口</label> <input class="form-control"
+							name="login_port" value="3306" required
+							data-msg-required="请输入数据库登录端口">
+						<p class="help-block">默认以3306端口登录</p>
+					</div>
+					<div class="form-group">
+						<label>数据库登录主机IP</label> <input class="form-control"
+							name="login_host" value="127.0.0.1" required
+							data-rule-loginhost="true" data-msg-required="请输入数据库登录主机IP">
+						<p class="help-block">默认以127.0.0.1登录</p>
+					</div>
+					<!-- /.row (nested) -->
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.col-lg-6 -->
+		<div class="col-lg-6">
+			<div class="panel panel-success">
+				<div class="panel-heading">数据库授权信息</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label>被授权用户名</label> <input class="form-control" name="user"
+							required data-msg-required="请输入被授权用户名">
+						<p class="help-block">如果此用户不存在将会创建次用户</p>
+					</div>
+					<div class="form-group">
+						<label>被授权登录密码</label> <input class="form-control" name="password" type="password"
+							required data-msg-required="请输入被授权登录密码">
+					</div>
+					<div class="form-group">
+						<label>被授权主机IP</label> <input class="form-control"
+							name="remote_host" required data-rule-prihost="true"
+							data-msg-required="请输入被授权主机IP">
+							<p class="help-block">多个IP请用“,”分隔</p>
+					</div>
+					<div class="form-group">
+						<label>被授权数据库</label> <input class="form-control" name=database
+							required data-msg-required="请输入被授权数据库">
+						<p class="help-block">多个数据库请用“,”分隔</p>
+					</div>
+					<div class="form-group">
+						<label>被授权数据表</label> <input class="form-control" name="tables"
+							value="*" required data-msg-required="请输入被授权数据表">
+						<p class="help-block">默认授权所有表</p>
+					</div>
+					<div class="form-group">
+					  <label>被授予权限</label><br>
+						<input type="checkbox"
+							id="ch1" value="all" name="privilege" required>all
+				     <input type="checkbox"
+							id="ch2" value="select" name="privilege">select
+					 <input type="checkbox"
+							id="ch3" value="insert" name="privilege">insert
+					<input type="checkbox"
+							id="ch4" value="update" name="privilege">update
+					<input type="checkbox"
+							id="ch5" value="delete" name="privilege">delete
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<button type="submit" class="btn btn-default">执行</button>
+				<button type="reset" class="btn btn-default">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- /.row-->
+{% endblock %} {% block js%}
+<script src="/static/jquery-validate/jquery.validate.js"></script>
+<script src="/static/jquery-validate/messages_zh.js"></script>
+<script>
+	$(function() {
+		//jquery.validate
+		$("#userpri").validate({
+			submitHandler : function() {
+				//验证通过后 的js代码写在这里
+				//alert("提交事件!");
+				form.submit();
+				//debug:true
+			},
+			onfocusout : function(element) {
+				$(element).valid();
+			},
+			errorPlacement: function(error, element) { //错误信息位置设置方法
+				error.appendTo( element.parent() ); //这里的element是录入数据的对象
+				},
+		});
+	})
+	//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+	$.validator.setDefaults({
+		errorElement : 'span',
+	});
+
+	//配置通用的默认提示语
+	/*$.extend($.validator.messages, {
+	 required: '必填',
+	 equalTo: "请再次输入相同的值"
+	 });*/
+
+	//IP地址
+	jQuery.validator
+			.addMethod(
+					"hostip",
+					function(value, element) {
+						//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+						var hostip = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$/;
+						return this.optional(element) || hostip.test(value);
+					}, "请输入正确的IP地址");
+	jQuery.validator
+			.addMethod(
+					"loginhost",
+					function(value, element) {
+						//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+						var hostip = /^((((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d))|(localhost))$/;
+						return this.optional(element) || hostip.test(value);
+					}, "请输入正确的IP地址");
+	jQuery.validator
+	.addMethod(
+			"prihost",
+			function(value, element) {
+				//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+				var hostip = /^(((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d))(,(((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)))*$/;
+				return this.optional(element) || hostip.test(value);
+			}, "请输入正确的IP地址");
+	//ip地址是否存在
+	jQuery.validator.addMethod("master", function (value, element) {
+	   var result = false;
+	   $.ajaxSetup({async:false});
+	   var param = {HostIP:value};
+	   $.post("{% url 'hd_mysql:master_check' %}",param,function(data){
+		   result = (1 == data);
+	   });
+	   $.ajaxSetup({async:true});
+	   return result;
+	},"只允许主库添加授权用户");
+</script>
+{% endblock %}

@@ -1,0 +1,304 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+<!-- <link href="/static/datatables/css/jquery.dataTables.css" rel="stylesheet"> -->
+<link href="/static/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/static/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">主机组列表</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                       
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="group-info">
+                             <a class="btn btn-sm btn-primary-outline" id="add-row" data-toggle="modal" data-target="#hostModal"><i class="fa fa-plus"></i> 添加主机组</a>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>主机组名</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for group in groups%}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{group.groupname}}</td>
+                                        <td>
+                                          <ul style="margin:0px">
+                                          <a data-toggle="modal" data-target="#hostModal" style="margin-left:12px" class="edit">编辑</a>
+                                           {% if group.id > 2 %}
+                                          <a href="javascript:void(0);" style="margin-left:12px" class="delete">删除</a>
+                                           {% endif %}
+                                          </ul>
+      
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <!-- 模态框（Modal） -->  
+            <div class="modal fade" id="hostModal" tabindex="-1" role="dialog">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                        <div class="modal-header">  
+                            <button type="button" class="close" data-dismiss="modal">  
+                  ×  
+            </button>  
+                        </div>
+                   <form id="hostgrpadd" role="form" method="post" action="groupadd" class="form-horizontal">
+							{% csrf_token %}  
+                        <div class="modal-body">
+                        	<div class="form-group">
+								<label for="groupname" class="col-md-2 control-label">主机组名</label>
+								 <div class="col-md-6">
+								 <input name="Groupid" hidden="hidden" id="groupid">
+								 <input class="form-control" name="Groupname" id="groupname" required  data-rule-asynchostgrp="true" data-msg-required="请输入主机组名"> </div>
+						</div>
+						  <div class="form-group">
+								<label class="col-md-2 control-label">过滤</label>
+								 <div class="col-md-4">
+								 <input class="form-control" name="NselectIP" id="nselectip">
+								 </div>
+						         <div class="col-md-4 col-md-offset-1">
+								 <input class="form-control" name="SelectIP" id="selectip">
+								 </div>
+						</div>
+						<div class="form-group">
+                            <label for="" class="col-md-2 control-label">主机</label>
+                            <div class="col-md-4">
+                                <div>
+                                    <select id="assets" name="assets" class="form-control m-b" size="12" multiple="">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="btn-group" style="margin-top: 60px;margin-left:-8px;">
+                                    <button type="button" class="btn btn-default" id="button_select"><i class="fa fa-chevron-right"></i></button>
+                                    <button type="button" class="btn btn-default" id="button_unselect"><i class="fa fa-chevron-left"></i> </button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div>
+                                    <select id="asset_select" name="asset_select" class="form-control m-b" size="12" multiple="">                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+						</div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dataclose">关闭  
+            </button>  
+                            <button type="submit" class="btn btn-primary" id="datasubmit">  
+               保存
+            </button>  
+                        </div>
+                   </form>
+                    </div>  
+                    <!-- /.modal-content -->  
+                </div>  
+       </div>
+
+{% endblock %}
+{% block js%}
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/static/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#group-info').DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "oLanguage": {//国际语言转化
+            "oAria": {
+                "sSortAscending": " - click/return to sort ascending",
+                "sSortDescending": " - click/return to sort descending"
+            }, 
+            "sLengthMenu": "显示 _MENU_ 记录",
+            "sZeroRecords": "对不起，查询不到任何相关数据",
+            "sEmptyTable": "未有相关数据",
+            "sLoadingRecords": "正在加载数据-请等待...",
+            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+            "sInfoEmpty": "当前显示0到0条，共0条记录",
+            "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+            "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+            "sSearch": "模糊查询：",
+            "sUrl": "",
+            //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": " 上一页 ",
+                "sNext": " 下一页 ",
+                "sLast": " 尾页 "
+                }            
+           },
+           "columnDefs":[{
+				 "orderable":false,//禁用排序
+				 "targets":[2]   //指定的列
+			 }]
+      });
+      $('#group-info tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+      $('#group-info tbody').on( 'click', 'a.delete', function () {
+    	  if (confirm("确定要删除该属性？")) {
+    		  var Groupname = $(this).parents('tr').children().eq(1).text();
+			  $.ajax(
+						{type: "POST",
+				        url: "/hd_mesos/groupdel",
+				        data: {
+				        	"Groupname":Groupname,
+				        	},
+				      /*  success: function(resp){
+				        	 alert(resp);
+				        }*/
+				});
+              table.row($(this).parents('tr')).remove().draw(false);  
+          } 
+      } );
+      table.on( 'order.dt search.dt', function () {
+          table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+              cell.innerHTML = i+1;
+          } );
+      } ).draw();
+      $('#group-info tbody').on( 'click', 'a.edit', function () {
+    	  var Groupname = $(this).parents('tr').children().eq(1).text();
+    	  $("#groupname").removeAttr("data-rule-asynchostgrp");
+    	  $.ajax(
+					{type: "POST",
+			        url: "/hd_mesos/grouplook",
+			        data: {
+			        	"Groupname":Groupname,
+			        	},
+			      success: function(data){
+			    	  var obj = eval('(' + data + ')');
+			    	  $("#groupname").val(obj.groupname);
+			    	  window.oldgroupname = obj.groupname;
+			    	  $("#groupid").val(obj.groupid);; 
+			    	  for (i in obj.selected){
+			    		  $("#asset_select").append("<option value="+obj.selected[i]+">"+obj.selected[i]+"</option>")
+			    	  }
+			    	  for (i in obj.unselected){
+			    		  $("#assets").append("<option value="+obj.unselected[i]+">"+obj.unselected[i]+"</option>")
+			    	  }
+			      }
+					});
+			});
+      $("#hostModal").on("hidden.bs.modal", function() {
+    	    $("#groupname").val("");
+	    	$("div.form-group span").remove()
+	        $("#assets").empty()
+	    	$("#asset_select").empty()
+    	});
+    });
+    $("#add-row").click(function(){
+    	  $.ajax(
+  			 {type: "POST",
+  		       url: "/hd_mesos/hostajaxget",
+  		       success: function(data){
+  			    	  var obj = eval('(' + data + ')');
+  			    	  for (i in obj.hostlist){
+  			    		  $("#assets").append("<option value="+obj.hostlist[i]+">"+obj.hostlist[i]+"</option>")
+  			    	  }
+  		       }
+  				});
+      });
+    $("#button_select").click(function(){
+    	var option = $("#assets option:selected");
+    	option.clone().appendTo("#asset_select");
+    	option.remove();
+    });
+    $("#button_unselect").click(function(){
+    	var option = $("#asset_select option:selected");
+    	option.clone().appendTo("#assets");
+    	option.remove();
+    });
+ 	 $("#groupname").change(function(){ 
+ 		if ($(this).attr != window.oldgroupname){
+	    $(this).attr({"data-rule-asynchostgrp":true});
+ 		}
+	    });
+ 	$("#nselectip").keyup(function(){
+ 		  temp = $("#nselectip").val();
+ 		  if( temp != ""){
+ 	 		 $("#assets option").css("display","none");
+ 	 		 $("#assets option:contains("+temp+")").show();
+ 		  }else{
+ 			 $("#assets option").show();
+ 		  }
+ 			});
+ 	$("#selectip").keyup(function(){
+		  temp = $("#selectip").val();
+		  if( temp != ""){
+	 		 $("#asset_select option").css("display","none");
+	 		 $("#asset_select option:contains("+temp+")").show();
+		  }else{
+			 $("#asset_select option").show();
+		  }
+			});
+$(function(){
+    //jquery.validate
+	validator=$("#hostgrpadd").validate({
+		onfocusout: function(element) { $(element).valid(); },
+	});
+	$("#datasubmit").click(function(){
+		   $("#asset_select option").each(function(){
+	        	 $(this).prop({"selected":true});
+	         });
+		   $("#assets option").each(function(){
+	        	 $(this).prop({"selected":true});
+	         });
+		   validator.form();
+		  });
+})
+//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+$.validator.setDefaults({
+	errorElement:'span',
+});
+
+//配置通用的默认提示语
+/*$.extend($.validator.messages, {
+	required: '必填',
+    equalTo: "请再次输入相同的值"
+});*/
+
+
+jQuery.validator.addMethod("asynchostgrp", function (value, element) {
+   var result = false;
+   var groupid = $('#groupid').val();
+   $.ajaxSetup({async:false});
+   var param = {HostGrp:groupid};
+   $.post("hostgrpcheck",param,function(data){
+	   result = (1 == data);
+   });
+   $.ajaxSetup({async:true});
+   return result;
+},"主机组已存在");
+
+</script>
+{% endblock %}

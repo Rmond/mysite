@@ -1,0 +1,173 @@
+Performing system checks...
+
+April 10, 2018 - 09:21:56
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).
+[19/Apr/2018 16:13:46] "GET / HTTP/1.1" 200 3835
+[19/Apr/2018 16:13:46] "GET /static/css/handu.css HTTP/1.1" 200 10425
+[19/Apr/2018 16:13:46] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 121183
+[19/Apr/2018 16:13:46] "GET /static/metisMenu/metisMenu.min.js HTTP/1.1" 200 1879
+[19/Apr/2018 16:13:46] "GET /static/bootstrap/js/bootstrap.js HTTP/1.1" 200 71798
+[19/Apr/2018 16:13:46] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 29063
+[19/Apr/2018 16:13:46] "GET /static/jquery/jquery-1.12.4.min.js HTTP/1.1" 200 97166
+[19/Apr/2018 16:13:46] "GET /static/jquery-validate/messages_zh.js HTTP/1.1" 200 1339
+[19/Apr/2018 16:13:46] "GET /static/jquery-validate/jquery.validate.js HTTP/1.1" 200 47709
+Not Found: /favicon.ico
+[19/Apr/2018 16:13:46] "GET /favicon.ico HTTP/1.1" 404 2510
+[19/Apr/2018 16:13:48] "POST /hd_mesos/login/ HTTP/1.1" 302 0
+[19/Apr/2018 16:13:48] "GET /hd_mesos/index HTTP/1.1" 200 22364
+[19/Apr/2018 16:13:48] "GET /static/metisMenu/metisMenu.min.css HTTP/1.1" 200 781
+[19/Apr/2018 16:13:48] "GET /static/js/handu.js HTTP/1.1" 200 2623
+[19/Apr/2018 16:13:48] "GET /static/echarts/echarts.js HTTP/1.1" 200 386938
+[19/Apr/2018 16:13:48] "GET /static/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3 HTTP/1.1" 200 71896
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-13 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-14 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-15 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-16 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-17 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-18 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-19 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/usr/lib64/python2.7/site-packages/django/db/models/fields/__init__.py:1389: RuntimeWarning: DateTimeField User_Task.star_time received a naive datetime (2018-04-20 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[19/Apr/2018 16:13:48] "POST /hd_mesos/taskchart HTTP/1.1" 200 138
+[19/Apr/2018 16:13:48] "GET /static/favicon.ico HTTP/1.1" 200 4286
+[19/Apr/2018 16:13:51] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:13:51] "GET /static/datatables-responsive/dataTables.responsive.css HTTP/1.1" 200 3051
+[19/Apr/2018 16:13:51] "GET /static/datatables-responsive/dataTables.responsive.js HTTP/1.1" 200 25098
+[19/Apr/2018 16:13:51] "GET /static/datatables-plugins/dataTables.bootstrap.css HTTP/1.1" 200 7616
+[19/Apr/2018 16:13:51] "GET /static/datatables-plugins/dataTables.bootstrap.min.js HTTP/1.1" 200 1942
+[19/Apr/2018 16:13:51] "GET /static/datatables/js/jquery.dataTables.min.js HTTP/1.1" 200 82638
+Internal Server Error: /hd_mysql/prilist
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/opt/develop/mysite/hd_mesos/views.py", line 22, in wrapper
+    return func(request,*args,**kwargs)
+  File "/opt/develop/mysite/hd_mysql/views.py", line 102, in pri_list
+    return HttpResponse(json.dumps(data,cls=DjangoJSONEncoder))
+NameError: global name 'DjangoJSONEncoder' is not defined
+[19/Apr/2018 16:13:51] "POST /hd_mysql/prilist HTTP/1.1" 500 16849
+Performing system checks...
+
+April 19, 2018 - 16:13:27
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).
+[19/Apr/2018 16:14:23] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+Internal Server Error: /hd_mysql/prilist
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/opt/develop/mysite/hd_mesos/views.py", line 22, in wrapper
+    return func(request,*args,**kwargs)
+  File "/opt/develop/mysite/hd_mysql/views.py", line 103, in pri_list
+    return HttpResponse(json.dumps(data,cls=DjangoJSONEncoder))
+NameError: global name 'DjangoJSONEncoder' is not defined
+[19/Apr/2018 16:14:23] "GET /static/favicon.ico HTTP/1.1" 200 4286
+[19/Apr/2018 16:14:23] "POST /hd_mysql/prilist HTTP/1.1" 500 16854
+Performing system checks...
+
+April 19, 2018 - 16:14:20
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).
+[19/Apr/2018 16:15:09] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:15:10] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+[19/Apr/2018 16:15:10] "GET /static/favicon.ico HTTP/1.1" 200 4286
+[19/Apr/2018 16:15:13] "POST /hd_mysql/prilist HTTP/1.1" 200 1085
+[19/Apr/2018 16:15:13] "POST /hd_mysql/prilist HTTP/1.1" 200 1085
+[19/Apr/2018 16:15:14] "POST /hd_mysql/prilist HTTP/1.1" 200 1085
+[19/Apr/2018 16:15:14] "POST /hd_mysql/prilist HTTP/1.1" 200 1081
+[19/Apr/2018 16:15:14] "POST /hd_mysql/prilist HTTP/1.1" 200 1088
+[19/Apr/2018 16:15:15] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+[19/Apr/2018 16:15:16] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:15:17] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+[19/Apr/2018 16:15:18] "GET /hd_mysql/userpri HTTP/1.1" 200 21476
+[19/Apr/2018 16:15:19] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:15:19] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+[19/Apr/2018 16:15:20] "GET /hd_mysql/userpri HTTP/1.1" 200 21476
+[19/Apr/2018 16:15:21] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:15:21] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+[19/Apr/2018 16:15:23] "GET /hd_mysql/userpri HTTP/1.1" 200 21476
+[19/Apr/2018 16:15:23] "GET /hd_mysql/prilist HTTP/1.1" 200 25111
+[19/Apr/2018 16:15:24] "POST /hd_mysql/prilist HTTP/1.1" 200 1047
+Performing system checks...
+
+April 19, 2018 - 16:15:07
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).
+Performing system checks...
+
+April 19, 2018 - 16:16:00
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).
+Performing system checks...
+
+April 19, 2018 - 16:47:04
+Django version 1.11.1, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W001) Your URL pattern '^$' uses include with a regex ending with a '$'. Remove the dollar from the regex to avoid problems including URLs.
+?: (urls.W005) URL namespace 'hd_mesos' isn't unique. You may not be able to reverse all URLs in this namespace
+
+System check identified 2 issues (0 silenced).

@@ -1,0 +1,33 @@
+{% extends "mesos/main-layout.html" %}
+{% block css%}
+{% endblock %}
+{% block content %}
+<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">数据库授权结果</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                         Ansible返回结果
+                        </div>
+                        <div class="panel-body">
+                        <p>
+                        {%for res in reslist%}
+                        {{res}}<br>
+                        {%endfor%}
+                        </p>
+                        </div>
+                        <div class="panel-footer text-center">
+                         <a class="btn btn-primary" href="userpri" role="button">返回</a>
+                        </div>
+                    </div>
+                                </div>
+</div>
+                                <!-- /.col-lg-6 (nested) -->
+{% endblock %}
+{% block js%}
+{% endblock %}
