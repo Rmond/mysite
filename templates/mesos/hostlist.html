@@ -273,11 +273,10 @@
 				        data: {
 				        	"HostIP":hostIP,
 				        	},
-				      /*  success: function(resp){
-				        	 alert(resp);
-				        }*/
+				        success: function(resp){
+				        	window.location.reload();
+				        }
 				});
-              table.row($(this).parents('tr')).remove().draw(false);  
           } 
       } );
       $("#hostaddModal").on("hidden.bs.modal", function() {

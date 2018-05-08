@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from __future__ import print_function
 import json,os,time,datetime,re
 
 from django.http.response import HttpResponse
@@ -7,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from getprolist import GetProList
 from getfilepath import GetFilePath
-
+from django_celery_results.models import TaskResult
 from mysite import settings
 from hd_mesos.views import login_check,user_role
 from hd_mesos.models import HostInfo,HostGroup,User_Task,Host_Group,User_Shell_Task,User_Yum_Task
@@ -239,6 +240,25 @@ def script_exec(request,**kargs):
         user_task = User_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=hoststr,taskname=script_name)
         user_task.save()
         return redirect('/hd_mesos/tasklist/others')
+
+@csrf_exempt
+@login_check
+def roles_api(request,taskid=""):
+    if request.method == 'POST':
+        extra_vars = json.loads(request.body)
+        playbook_path = "/opt/initsys/execute.yml"
+        startime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+        username = request.session.get("username",None)
+        taskobj = com_playbook.apply_async([extra_vars,playbook_path])
+        user_task = User_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=extra_vars["hosts"],taskname=extra_vars["roles"])
+        user_task.save()
+        return HttpResponse(taskobj.id)
+    if request.method == 'GET':
+        try:
+            task_result = TaskResult.objects.get(task_id=taskid)
+            return HttpResponse(json.dumps(task_result.result))
+        except TaskResult.DoesNotExist:
+            return HttpResponse("Task not found")
 
 @csrf_exempt
 @login_check

@@ -232,7 +232,7 @@ def host_add(request):#主机添加或修改
         for i in SelectGroupId:#判断主机组是否被选中
             host_group = Host_Group(group_id=i,ip_id=HostIP)
             host_group.save()
-        return redirect('hostlist')
+        return redirect('/hd_mesos/hostlist')
 
 @csrf_exempt
 @login_check
@@ -472,7 +472,7 @@ def task_info(request,*args,**kwargs):
     else:
         user_task = User_Task.objects.get(id = kwargs['taskid'])
     if user_task.result:
-        result = user_task.result.replace("[","").replace("]","").replace("\"","").split(",")
+        result = user_task.result.replace("[","").replace("]","").replace("\"","").decode("unicode-escape").split(",")
     else:
         result = []
     return render(request,"mesos/taskinfo.html",{"user_task":user_task,"result":result})
@@ -509,7 +509,7 @@ def host_import(request):
             except HostInfo.DoesNotExist:
                 hostinfo = HostInfo(hostname=hostname,ip=hostip)
             hostinfo.save()
-        return redirect('hostlist.html')
+        return redirect('/hd_mesos/hostlist')
 
 @csrf_exempt
 @login_check

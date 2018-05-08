@@ -30,4 +30,6 @@ urlpatterns = [
     url(r'^script/exec/(?P<scriptname>\w+)$',views.script_exec,name="script_exec"),
     url(r'^script/exec$',views.script_exec),
     url(r'^script/del$',views.script_del),
+    url(r'^rolesapi$',views.roles_api),
+    url(r'^rolesapi/(?P<taskid>[\w|-]+)$',views.roles_api),
 ]

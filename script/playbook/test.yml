@@ -1,0 +1,6 @@
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: Sync Time
+      cron: name="sync time" minute=0 job="/usr/sbin/ntpdate 192.168.26.2"
+    - name: Add MAILTO
+      cron: name="MAILTO" env=yes value=""

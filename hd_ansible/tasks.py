@@ -168,11 +168,11 @@ def com_playbook(extra_vars,playbook_path):
     try:
         result["ansible_res"] = ansible_handle(playbook_path,extra_vars)
         for hostip in extra_vars["hosts"].split(":"):
-            birefres = filter(lambda x:hostip in x,result["ansible_res"])[-1]
+            birefres = filter(lambda x:hostip in x.decode("utf-8"),result["ansible_res"])[-1]
             if ("failed=0" not in birefres) or ("unreachable=0" not in birefres):
-                result["status"] = "FAILED"
+                result["status"] = "Failed"
     except Exception:
-        result["status"] = "FAILED"
+         result["status"] = "Failed"
     return result
 
 @shared_task()
@@ -182,7 +182,7 @@ def db_dump(extra_vars,flag=False,mysql_bk_name=""):
         startime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         result["ansible_res"] = ansible_handle("/opt/ansible/mysql/database_exp.yml",extra_vars)
         stoptime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-        if "ok=1" not in ansible_res[-2]:
+        if "ok=1" not in result["ansible_res"][-2]:
             result["status"] = "FAILED"
     except Exception:
         result["status"] = "FAILED"

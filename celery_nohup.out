@@ -6,74 +6,27 @@ Please specify a different user using the -u option.
 User information: uid=0 euid=0 gid=0 egid=0
 
   uid=uid, euid=euid, gid=gid, egid=egid,
-[2018-03-30 13:45:35,864: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
-[2018-03-30 13:45:35,883: INFO/MainProcess] mingle: searching for neighbors
-[2018-03-30 13:45:36,912: INFO/MainProcess] mingle: all alone
-[2018-03-30 13:45:36,927: WARNING/MainProcess] /usr/lib/python2.7/site-packages/celery/fixups/django.py:202: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+[2018-04-28 16:55:14,031: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2018-04-28 16:55:14,052: INFO/MainProcess] mingle: searching for neighbors
+[2018-04-28 16:55:15,084: INFO/MainProcess] mingle: all alone
+[2018-04-28 16:55:15,103: WARNING/MainProcess] /usr/lib/python2.7/site-packages/celery/fixups/django.py:202: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
   warnings.warn('Using settings.DEBUG leads to a memory leak, never '
-[2018-03-30 13:45:36,927: INFO/MainProcess] celery@server155 ready.
-
-Restarting celery worker (/usr/bin/celery -A mysite worker -l info)
-
-worker: Warm shutdown (MainProcess)
- 
- -------------- celery@server155 v4.0.2 (latentcall)
----- **** ----- 
---- * ***  * -- Linux-3.10.0-514.16.1.el7.x86_64-x86_64-with-centos-7.3.1611-Core 2018-03-30 13:45:35
--- * - **** --- 
-- ** ---------- [config]
-- ** ---------- .> app:         mysite:0x1e5a2d0
-- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
-- ** ---------- .> results:     
-- *** --- * --- .> concurrency: 4 (prefork)
--- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
---- ***** ----- 
- -------------- [queues]
-                .> celery           exchange=celery(direct) key=celery
-                
-
-[tasks]
-  . hd_ansible.tasks.com_playbook
-  . hd_ansible.tasks.db_dump
-  . hd_ansible.tasks.install
-  . hd_ansible.tasks.sid_init
-  . hd_ansible.tasks.sid_update_task
-  . hd_ansible.tasks.update
-  . hd_mesos.tasks.update_info
-  . mysite.celery.debug_task
-
-/usr/lib/python2.7/site-packages/celery/platforms.py:793: RuntimeWarning: You're running the worker with superuser privileges: this is
-absolutely not recommended!
-
-Please specify a different user using the -u option.
-
-User information: uid=0 euid=0 gid=0 egid=0
-
-  uid=uid, euid=euid, gid=gid, egid=egid,
-[2018-04-20 09:36:06,413: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 2.00 seconds...
-
-[2018-04-20 09:36:08,426: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 4.00 seconds...
-
-[2018-04-20 09:36:12,439: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 6.00 seconds...
-
-[2018-04-20 09:36:18,456: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 8.00 seconds...
-
-[2018-04-20 09:36:26,475: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 10.00 seconds...
-
-[2018-04-20 09:36:36,495: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 12.00 seconds...
-
-[2018-04-20 09:36:48,522: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 14.00 seconds...
-
-[2018-04-20 09:37:02,547: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 16.00 seconds...
-
-[2018-04-20 09:37:18,574: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 18.00 seconds...
-
+[2018-04-28 16:55:15,103: INFO/MainProcess] celery@server155 ready.
+[2018-04-28 16:55:32,439: INFO/MainProcess] Received task: hd_ansible.tasks.com_playbook[a1581eb2-40c0-4c09-97d1-1b2b18d8de98]  
+ [WARNING]: Found variable using reserved name: hosts
+ [WARNING]: Found variable using reserved name: roles
+ [WARNING]: SELinux state change will take effect next reboot
+[2018-04-28 16:56:17,080: INFO/PoolWorker-4] Task hd_ansible.tasks.com_playbook[a1581eb2-40c0-4c09-97d1-1b2b18d8de98] succeeded in 43.00676438s: {'status': 'SUCCESS', 'ansible_res': ['', 'PLAY [172.16.1.148] ************************************************************', '', 'TASK [init : 关闭selinux] ********************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 修改主机名] ************************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 更新系统] *************************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 关闭防火墙] ************************************************************', 'fatal: [172.16.1.148]: FAILED! => {"changed": false, "msg": "Could not find the requested service firewalld: host"}', '...ignoring', '', 'TASK [init : 关闭NetworkManager] *************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 安装ntpdate] ********************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 同步时间] *************************************************************', 'changed: [172.16.1.148]', '', 'TASK [i...', ...]}
+[2018-04-28 17:26:47,355: INFO/MainProcess] Received task: hd_ansible.tasks.com_playbook[031404ff-c0be-4d1e-8f8d-2785f76e5905]  
+ [WARNING]: Found variable using reserved name: hosts
+ [WARNING]: Found variable using reserved name: roles
+ [WARNING]: SELinux state change will take effect next reboot
+[2018-04-28 17:27:30,068: INFO/PoolWorker-3] Task hd_ansible.tasks.com_playbook[031404ff-c0be-4d1e-8f8d-2785f76e5905] succeeded in 42.219671126s: {'status': 'SUCCESS', 'ansible_res': ['', 'PLAY [172.16.1.148] ************************************************************', '', 'TASK [init : 关闭selinux] ********************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 修改主机名] ************************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 更新系统] *************************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 关闭防火墙] ************************************************************', 'fatal: [172.16.1.148]: FAILED! => {"changed": false, "msg": "Could not find the requested service firewalld: host"}', '...ignoring', '', 'TASK [init : 关闭NetworkManager] *************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 安装ntpdate] ********************************************************', 'ok: [172.16.1.148]', '', 'TASK [init : 同步时间] *************************************************************', 'changed: [172.16.1.148]', '', 'TASK [i...', ...]}
+[2018-05-08 10:52:10,410: INFO/MainProcess] Received task: hd_ansible.tasks.com_playbook[cd758ca8-ea04-438c-a25f-8271e9d3154f]  
+ERROR! 'roles' is undefined
+[2018-05-08 10:52:11,583: INFO/PoolWorker-4] Task hd_ansible.tasks.com_playbook[cd758ca8-ea04-438c-a25f-8271e9d3154f] succeeded in 0.916479692096s: {'status': 'Failed', 'ansible_res': []}
+[2018-05-08 10:55:41,156: INFO/MainProcess] Received task: hd_ansible.tasks.com_playbook[64233008-18e9-46cb-890e-36493507f4cd]  
+[2018-05-08 10:55:42,904: INFO/PoolWorker-3] Task hd_ansible.tasks.com_playbook[64233008-18e9-46cb-890e-36493507f4cd] succeeded in 0.0103061138652s: {'status': 'Failed', 'ansible_res': ''}
+[2018-05-08 11:14:30,910: INFO/MainProcess] Received task: hd_ansible.tasks.com_playbook[26e103c2-c484-4f9c-a557-2f5e3fe96760]  
+ [WARNING]: Found variable using reserved name: hosts
+[2018-05-08 11:14:35,198: INFO/PoolWorker-4] Task hd_ansible.tasks.com_playbook[26e103c2-c484-4f9c-a557-2f5e3fe96760] succeeded in 3.07281958102s: {'status': 'SUCCESS', 'ansible_res': ['', 'PLAY [172.16.1.148] ************************************************************', '', 'TASK [Cammond execute] *********************************************************', 'changed: [172.16.1.148]', '', 'PLAY RECAP *********************************************************************', '172.16.1.148               : ok=1    changed=1    unreachable=0    failed=0   ', '']}
