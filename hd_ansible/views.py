@@ -150,7 +150,10 @@ def command_exec(request):
         taskobj = com_playbook.apply_async([extra_vars,playbook_path])
         user_task = User_Shell_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=hoststr,taskname=taskname,shell_cmd=extra_vars["shell_cmd"])
         user_task.save()
-        return redirect('/hd_mesos/tasklist/shell')
+        if request.session.get("authmethod",None):
+            return HttpResponse(taskobj.id)
+        else:
+            return redirect('/hd_mesos/tasklist/shell')
 
 @csrf_exempt
 @login_check

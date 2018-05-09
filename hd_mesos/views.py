@@ -29,6 +29,7 @@ def login_check(func):#登录检查装饰器
                         request.session['is_login'] = user.nickname
                         request.session['username'] = user.username
                         request.session['role'] = user.role
+                        request.session['authmethod'] = "basic"
         nickname = request.session.get('is_login',None)
         if not nickname:
             return redirect('/hd_mesos/login')
@@ -232,7 +233,10 @@ def host_add(request):#主机添加或修改
         for i in SelectGroupId:#判断主机组是否被选中
             host_group = Host_Group(group_id=i,ip_id=HostIP)
             host_group.save()
-        return redirect('/hd_mesos/hostlist')
+        if request.session.get('authmethod',None):
+            return HttpResponse('Success')
+        else:
+            return redirect('/hd_mesos/hostlist')
 
 @csrf_exempt
 @login_check

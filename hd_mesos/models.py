@@ -35,6 +35,8 @@ class Host_Group(models.Model):
     id = models.AutoField(primary_key=True)
     ip = models.ForeignKey(HostInfo)
     group = models.ForeignKey(HostGroup)
+    class Meta:
+        unique_together = ('ip', 'group',)
     
 class User_Host(models.Model):
     id = models.AutoField(primary_key=True)
@@ -45,6 +47,8 @@ class User_Hostgroup(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.ForeignKey(settings.AUTH_USER_MODEL)
     group = models.ForeignKey(HostGroup)
+    class Meta:
+        unique_together = ('username', 'group',)
     
 class User_Task(models.Model):
     id = models.AutoField(primary_key=True)
