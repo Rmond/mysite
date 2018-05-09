@@ -112,6 +112,10 @@
 													            {"sWidth": "40px","orderable":false},
 													            ],
 					                    "order": [[5,"desc"]],
+                                        "columnDefs":[{"render": function(data, type, row) {
+					                     return '<div style="width:200px;height:25px;overflow-x:hidden;overflow-y:hidden;">'+data+'</div>';
+					                    },
+					                        "targets": 4}],
 										});
 						table.on('order.dt search.dt', function() {
 							table.column(0, {
