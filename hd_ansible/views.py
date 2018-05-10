@@ -184,7 +184,10 @@ def script_add(request):
         except Exception as e:
             return HttpResponse(e.message)
         scriptinfo.save()
-        return redirect("/hd_ansible/script/list")
+        if request.session.get('authmethod',None):
+            return HttpResponse('Success')
+        else:
+            return redirect("/hd_ansible/script/list")
     
 @csrf_exempt
 @login_check
@@ -214,7 +217,7 @@ def script_del(request):
             script_file=os.path.join(PLAYBOOK_PATH,scriptinfo.name+".yml")
         os.remove(script_file)
         scriptinfo.delete()
-        return HttpResponse()
+        return HttpResponse('Success')
     
 @csrf_exempt
 @login_check
@@ -242,7 +245,10 @@ def script_exec(request,**kargs):
         taskobj = com_playbook.apply_async([extra_vars,playbook_path])
         user_task = User_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=hoststr,taskname=script_name)
         user_task.save()
-        return redirect('/hd_mesos/tasklist/others')
+        if request.session.get('authmethod', None):
+            return HttpResponse(taskobj.id)
+        else:
+            return redirect('/hd_mesos/tasklist/others')
 
 @csrf_exempt
 @login_check
