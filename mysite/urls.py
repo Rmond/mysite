@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^hd_ansible/', include('hd_ansible.urls',namespace='hd_ansible')),
     url(r'^hd_mysql/', include('hd_mysql.urls',namespace='hd_mysql')),
     url(r'^hd_common/', include('hd_common.urls',namespace="hd_common")),
+    url(r'^hd_inventory/', include('hd_inventory.urls', namespace="hd_inventory")),
 ]

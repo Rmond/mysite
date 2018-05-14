@@ -267,7 +267,7 @@ def roles_api(request,taskid=""):
             task_result = TaskResult.objects.get(task_id=taskid)
             return HttpResponse(json.dumps(task_result.result))
         except TaskResult.DoesNotExist:
-            return HttpResponse("Task not found")
+            return HttpResponse("Pendding")
 
 @csrf_exempt
 @login_check
