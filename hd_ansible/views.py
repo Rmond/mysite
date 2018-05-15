@@ -255,7 +255,7 @@ def script_exec(request,**kargs):
 def roles_api(request,taskid=""):
     if request.method == 'POST':
         extra_vars = json.loads(request.body)
-        playbook_path = "/opt/initsys/execute.yml"
+        playbook_path = "/opt/ansible/execute.yml"
         startime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         username = request.session.get("username",None)
         taskobj = com_playbook.apply_async([extra_vars,playbook_path])
