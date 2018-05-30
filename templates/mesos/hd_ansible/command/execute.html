@@ -1,0 +1,119 @@
+{% extends "mesos/main-layout.html" %} {% block css%} {% endblock %}
+{%block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">软件安装</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-1">
+						<form id="execute" role="form" method="post" action="../command/exec" class="form-horizontal">
+							{% csrf_token %}
+						<div class="form-group">
+								<label for="command" class="col-md-4 control-label" >命令名称</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Name" id="name" placeholder="非必填"> </div>
+						</div>
+						<div class="form-group">
+								<label for="command" class="col-md-4 control-label">shell命令</label>
+								 <div class="col-md-6">
+								 <input class="form-control" name="Command" id="command" required data-rule-starcheck="true" data-msg-required="请输入命令"> </div>
+						</div>
+						<div class="form-group">
+						    <label for="grp_assets" class="col-md-4 control-label">主机组</label>
+                            <div class="col-md-6">
+                                    <select id="grp_assets" name="grp_assets" class="form-control m-b" size="3" multiple="multiple">
+                                   {% for group in grouplist%}
+                                    <option value={{group.id}}>{{group.groupname}}</option>
+                                    {%  endfor %}
+                                    </select>
+                             </div>
+                       </div>
+                      <div class="form-group">
+						    <label for="host_assets" class="col-md-4 control-label">主机IP</label>
+                            <div class="col-md-6">
+                                    <select id="host_assets" name="host_assets" class="form-control m-b" size="6" multiple="multiple">
+                                    </select>
+                                     <span id="error" style="color:red"></span>
+                                </div>
+                            </div> 
+						  <div class="form-group">
+							<div class="col-md-6 col-md-offset-6">
+								<button type="submit" class="btn btn-default">执行</button>
+							</div>
+							</div>
+						</form>
+					</div>
+					<!-- /.col-lg-6 (nested) -->
+				</div>
+				<!-- /.row (nested) -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+{% endblock %} {% block js%}
+<script>
+$(function(){
+    //jquery.validate
+	$("#execute").validate({
+		submitHandler: function() {
+			//验证通过后 的js代码写在这里
+			//alert("提交事件!");
+			if ($("#grp_assets").val()!=null && $("#host_assets").val()!=null){
+				$("#host_assets :selected").each(function(){
+		        	if($(this).val()=="all"){
+		     		   $("#host_assets option").each(function(){
+		  	        	 $(this).prop({"selected":true});
+		  	         });
+		        	}
+		        });
+				form.submit();
+			}
+			else{
+				$("#error").text("请至少选择一个目标主机");
+			}
+		},
+		onfocusout: function(element) { $(element).valid(); }
+	});
+    $("#grp_assets").change( function () {
+        $("#host_assets").empty();
+        var groupnames = [];
+        $("#grp_assets :selected").each(function(){
+        	groupnames.push($(this).val());
+        });
+        $.ajax({ 
+        	   type: "POST",
+   		       url: "/hd_common/hostipget",
+   		       data: {"groupname":groupnames},
+   		       traditional: true,
+   		       success: function(data){
+			    	  var obj = eval('(' + data + ')');
+   		    	     if(obj.hosts.length){
+   		    	      $("#host_assets").append("<option value='all'>ALL</option>");
+   		              }
+   			    	  for (j in obj.hosts){
+   			    		  $("#host_assets").append("<option value="+obj.hosts[j]+">"+obj.hosts[j]+"</option>")
+   			    	  }
+   		       }
+   				});
+    });
+})
+jQuery.validator
+.addMethod(
+		"starcheck",
+		function(value, element) {
+			//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
+			var hostip = /^[*]+$/;
+			return this.optional(element) || !hostip.test(value);
+		}, "禁止输入纯星号");
+
+</script>
+{% endblock %}

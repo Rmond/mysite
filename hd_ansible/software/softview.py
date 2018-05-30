@@ -18,11 +18,11 @@ from celery.result import AsyncResult
 
 @login_check
 def software_install(request):
-    return render(request,"mesos/ansible/software/install.html")
+    return render(request,"mesos/hd_ansible/software/install.html")
 
 @login_check
 def software_update(request):
-    return render(request,"mesos/ansible/software/update.html")
+    return render(request,"mesos/hd_ansible/software/update.html")
 
 @csrf_exempt
 @login_check
@@ -75,11 +75,11 @@ def software_installed(request):
                     user_task.save()
                     return redirect('/hd_mesos/tasklist.html')
                 else:
-                    return render(request,"mesos/ansible/software/install.html",{"error":"目标主机有任务进行，请稍等"})
+                    return render(request,"mesos/hd_ansible/software/install.html",{"error":"目标主机有任务进行，请稍等"})
             else:
-                return render(request,"mesos/ansible/software/install.html",{"error":"所选主机已全部安装此软件"})
+                return render(request,"mesos/hd_ansible/software/install.html",{"error":"所选主机已全部安装此软件"})
         else:
-            return render(request,"mesos/ansible/software/install.html",{"error":"请至少选择一个目标主机或主机组"})
+            return render(request,"mesos/hd_ansible/software/install.html",{"error":"请至少选择一个目标主机或主机组"})
 
 @csrf_exempt
 @login_check
@@ -122,9 +122,9 @@ def software_updated(request):
                 user_task.save()
                 return redirect('/hd_mesos/tasklist.html')
             else:
-                return render(request,"mesos/ansible/software/update.html",{"error":"目标主机有任务进行，请稍等"})
+                return render(request,"mesos/hd_ansible/software/update.html",{"error":"目标主机有任务进行，请稍等"})
         else:
-            return render(request,"mesos/ansible/software/update.html",{"error":"请至少选择一个目标主机或主机组"})
+            return render(request,"mesos/hd_ansible/software/update.html",{"error":"请至少选择一个目标主机或主机组"})
 
 @csrf_exempt
 @login_check

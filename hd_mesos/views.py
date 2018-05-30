@@ -37,14 +37,12 @@ def login_check(func):#登录检查装饰器
     return wrapper
 
 def user_role(func):#用户角色检查装饰器
-    def wrapper(request,*args,**kwargs):
+    def wrapper(request):
         role = request.session.get('role',None)
-        tempath = ""
         if role == 0:#管理员
-            tempath="mesos/"
+            return func(request)
         elif role == 1:#普通用户
-            tempath="mesos/custom/"
-        return func(request,tempath)
+            return func('Permission denied')
     return wrapper
 
 def authenticate(username,password):
@@ -74,12 +72,10 @@ def login(request):
     return render(request,"mesos/login.html")
 
 @login_check
-@user_role
-def index(request,tempath):
-    tempath = tempath
+def index(request):
     user_count = Users.objects.count()
     host_count = HostInfo.objects.count()
-    return render(request,tempath+"index.html",{"user_count":user_count,"host_count":host_count})
+    return render(request,"mesos/index.html",{"user_count":user_count,"host_count":host_count})
 
 @csrf_exempt
 @login_check 
@@ -108,51 +104,55 @@ def user_list(request):#用户列表展示
 @login_check
 def pwd_reset(request):#密码重置为6个1
     if request.method == 'POST':
-        Username = request.POST['Username']
-        user = Users.objects.get(username=Username)
+        username = request.POST['username']
+        user = Users.objects.get(username=username)
         user.password = make_password('111111')
         user.save()
         return HttpResponse("密码重置成功！")
 
 @csrf_exempt
-@login_check 
+@login_check
+@user_role
 def user_add(request):#用户添加或修改
     if request.method == 'POST':
-        Username = request.POST['Username']
-        Nickname = request.POST['Nickname']
-        Role = request.POST['Role']
-        if Users.objects.filter(username=Username):#判断用户是否存在
-            user = Users.objects.get(username=Username)
-            user.nickname = Nickname
-            user.role = Role
+        username = request.POST['username']
+        nickname = request.POST['nickname']
+        role = request.POST['role']
+        if Users.objects.filter(username=username):#判断用户是否存在
+            user = Users.objects.get(username=username)
+            user.nickname = nickname
+            user.role = role
         else:
-            Password = make_password('111111')
-            user =  Users(username=Username,nickname=Nickname,password=Password,role=Role)
+            password = make_password('111111')
+            user =  Users(username=username,nickname=nickname,password=password,role=role)
         user.save()
         return redirect('userlist.html')
 
 @csrf_exempt
-@login_check 
+@login_check
+@user_role
 def user_del(request):#用户删除
     if request.method == 'POST':
-        Username = request.POST['Username']
-        Users.objects.filter(username=Username).delete()
-        return HttpResponse()
+        username = request.POST['username']
+        Users.objects.filter(username=username).delete()
+        return HttpResponse('Success')
     
 @csrf_exempt
-@login_check 
+@login_check
+@user_role
 def user_look(request):#用户信息查看
     if request.method == 'POST':
-        Username = request.POST['Username']
-        user = Users.objects.get(username=Username)
+        username = request.POST['username']
+        user = Users.objects.get(username=username)
         return HttpResponse(json.dumps({"username":user.username,"nickname":user.nickname,"role":user.role}))
+    return HttpResponse('Error Method')
     
 @csrf_exempt
 @login_check
 def username_check(request):#添加用户时，表单查询用户是否存在
     if request.method == 'POST':
-        Username = request.POST['Username']
-        if Users.objects.filter(username=Username):
+        username = request.POST['username']
+        if Users.objects.filter(username=username):
             return HttpResponse(0)
         else:
             return HttpResponse(1)
@@ -161,55 +161,56 @@ def username_check(request):#添加用户时，表单查询用户是否存在
 @login_check  
 def user_info(request):
     if request.method == 'POST':
-        Username = request.session.get('username',None)
-        user = Users.objects.get(username = Username)
+        username = request.session.get('username',None)
+        user = Users.objects.get(username = username)
         return HttpResponse(json.dumps({'username':user.username,'nickname':user.nickname}))
     
 @csrf_exempt
 @login_check
+@user_role
 def user_edit(request):
     if request.method == 'POST':
-        Username = request.POST['Username']
-        Nickname = request.POST['Nickname']
-        Password = request.POST['Password']
-        user = Users.objects.get(username = Username)
-        user.nickname = Nickname
-        user.password = make_password(Password)
+        username = request.POST['username']
+        nickname = request.POST['nickname']
+        password = request.POST['password']
+        user = Users.objects.get(username = username)
+        user.nickname = nickname
+        user.password = make_password(password)
         user.save()
-        return HttpResponse()
+        return HttpResponse("Success")
 
 @login_check
 @user_role
-def host_list(request,tempath):#主机列表
-    tempath = tempath
-    if "custom" in tempath:
+def host_list(request):#主机列表
+    if request.session.get('role'):
         hosts = HostInfo.objects.filter(user_host__username_id = request.session.get('username'))
     else:
         hosts = HostInfo.objects.all()
     results = {'hosts':hosts}
-    return render(request,tempath+"hostlist.html",results)
+    return render(request,"mesos/hostlist.html",results)
 
 @login_check
 @user_role
-def hostgroups(request,tempath):#主机组列表
-    tempath = tempath
-    if "custom" in tempath:
+def hostgroups(request):#主机组列表
+    if request.session.get('role'):
         groups = HostGroup.objects.filter(user_hostgroup__username_id = request.session.get('username'))
     else:
         groups = HostGroup.objects.all()
     results = {'groups':groups}
-    return render(request,tempath+"hostgroups.html",results)
+    return render(request,"mesos/hostgroups.html",results)
 
 @csrf_exempt
 @login_check
+@user_role
 def host_del(request):#主机删除
     if request.method == 'POST':
-        HostIP = request.POST['HostIP']
-        HostInfo.objects.filter(ip=HostIP).delete()
-        return HttpResponse()
+        hostip = request.POST['hostip']
+        HostInfo.objects.filter(ip=hostip).delete()
+        return HttpResponse("Success")
 
 @csrf_exempt
 @login_check
+@user_role
 def hostlist_del(request):
     if request.method == 'POST':
         checklist=request.POST.getlist('checklist')
@@ -219,19 +220,20 @@ def hostlist_del(request):
 
 @csrf_exempt
 @login_check
+@user_role
 def host_add(request):#主机添加或修改
     if request.method == 'POST':
-        HostIP = request.POST['HostIP']
-        HostName = request.POST['HostName']
+        hostip = request.POST['hostip']
+        hostname = request.POST['hostname']
         SelectTags = request.POST.getlist('tags_select')
         SelectGroupId = request.POST.getlist('asset_select')
         tags = ""
         for tagid in SelectTags:
             tags+=Software.objects.get(id=tagid).softname+" "  
-        hostinfo =  HostInfo(hostname=HostName,ip=HostIP,tags=tags)
+        hostinfo =  HostInfo(hostname=hostname,ip=hostip,tags=tags)
         hostinfo.save()
         for i in SelectGroupId:#判断主机组是否被选中
-            host_group = Host_Group(group_id=i,ip_id=HostIP)
+            host_group = Host_Group(group_id=i,ip_id=hostip)
             host_group.save()
         if request.session.get('authmethod',None):
             return HttpResponse('Success')
@@ -262,6 +264,7 @@ def host_look(request,hostip):#主机信息更改
 
 @csrf_exempt
 @login_check
+@user_role
 def host_edit(request):
     if request.method == 'POST':
         HostIP = request.POST['HostIP']

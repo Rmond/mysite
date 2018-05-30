@@ -28,7 +28,7 @@ ProVersionitems = [{"Id":"scm-web-1704","Name":"SCM-WEB-1704","Type":"scm-web"},
 def inventory_mge(request):
     with open("/etc/ansible/hosts") as f:
         hosts = f.read().splitlines()
-    return render(request,"mesos/ansible/inventory/inventorymge.html",{"hosts":hosts})
+    return render(request,"mesos/hd_ansible/inventory/inventorymge.html",{"hosts":hosts})
 
 @login_check
 @user_role
@@ -65,7 +65,7 @@ def upload_file(request):
         for f in files:
             handle_upload_file(f)
         return HttpResponse("OK")
-    return render(request,"mesos/ansible/tomcat/projectdev.html")
+    return render(request,"mesos/hd_ansible/tomcat/projectdev.html")
 
 def handle_upload_file(f):
     file_name = "%s/%s" %(settings.UPLOAD_DIR,f.name)
@@ -97,7 +97,7 @@ def yum_manage(request,option):
         temp_path="update.html"
     elif option == "delete":
         temp_path="delete.html"
-    return render(request,"mesos/ansible/yum/"+temp_path ,{"grouplist":grouplist})
+    return render(request,"mesos/hd_ansible/yum/"+temp_path ,{"grouplist":grouplist})
 
 @csrf_exempt
 @login_check
@@ -131,7 +131,7 @@ def yum_execute(request,option):
 def command_exec(request):
     if request.method == 'GET':
         grouplist = HostGroup.objects.all()
-        return render(request,"mesos/ansible/command/execute.html" ,{"grouplist":grouplist})
+        return render(request,"mesos/hd_ansible/command/execute.html" ,{"grouplist":grouplist})
     if request.method == 'POST':
         hosts = request.POST.getlist('host_assets')
         if 'all' in hosts:
@@ -160,13 +160,13 @@ def command_exec(request):
 def script_list(request):
     if request.method == 'GET':
         scriptlist = ScriptInfo.objects.all()
-        return render(request,"mesos/ansible/script/scriptlist.html" ,{"scriptlist":scriptlist})
+        return render(request,"mesos/hd_ansible/script/scriptlist.html" ,{"scriptlist":scriptlist})
 
 @csrf_exempt
 @login_check
 def script_add(request):
     if request.method == 'GET':
-        return render(request,"mesos/ansible/script/scriptadd.html")
+        return render(request,"mesos/hd_ansible/script/scriptadd.html")
     if request.method == 'POST':
         try:
             script_name = request.POST['ScriptName']
@@ -203,7 +203,7 @@ def script_edit(request,**kargs):
             script = f.readlines()
     except Exception as e:
         return HttpResponse(e.message)
-    return render(request,"mesos/ansible/script/scriptedit.html",{"scriptinfo":scriptinfo,"script":script})
+    return render(request,"mesos/hd_ansible/script/scriptedit.html",{"scriptinfo":scriptinfo,"script":script})
 
 @csrf_exempt
 @login_check
@@ -224,7 +224,7 @@ def script_del(request):
 def script_exec(request,**kargs):
     if request.method == 'GET':
         grouplist = HostGroup.objects.all()
-        return render(request,"mesos/ansible/script/scriptexec.html",{"grouplist":grouplist,"scriptname":kargs["scriptname"]})
+        return render(request,"mesos/hd_ansible/script/scriptexec.html",{"grouplist":grouplist,"scriptname":kargs["scriptname"]})
     if request.method == 'POST':
         hosts = request.POST.getlist('host_assets')
         if 'all' in hosts:

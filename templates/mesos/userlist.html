@@ -76,17 +76,17 @@
                         	<div class="form-group">
 								<label for="username2" class="col-md-2 control-label">用户名</label>
 								 <div class="col-md-6">
-								 <input class="form-control" name="Username" id="username2" required data-rule-asyncusername="true" data-msg-required="请输入用户名"> </div>
+								 <input class="form-control" name="username" id="username2" required data-rule-asyncusername="true" data-msg-required="请输入用户名"> </div>
 						</div>
 						  <div class="form-group">
 								<label for="nickname2" class="col-md-2 control-label">昵称</label>
 								 <div class="col-md-6">
-								 <input class="form-control" name="Nickname" id="nickname2" required data-msg-required="请输入昵称"> </div>
+								 <input class="form-control" name="nickname" id="nickname2" required data-msg-required="请输入昵称"> </div>
 						</div>
 						<div class="form-group">
 						    <label for="" class="col-md-2 control-label">用户角色</label>
 						      <div class="col-md-6">
-                                    <select id="role" name="Role" class="form-control m-b" size=2 required data-msg-required="请选择用户角色">
+                                    <select id="role" name="role" class="form-control m-b" size=2 required data-msg-required="请选择用户角色">
                                     <option value="0">管理员</option>
                                     <option value="1">普通用户</option>
                                     </select>
@@ -160,7 +160,7 @@
 						{type: "POST",
 				        url: "/hd_mesos/userdel",
 				        data: {
-				        	"Username":username,
+				        	"username":username,
 				        	},
 				      /*  success: function(resp){
 				        	 alert(resp);
@@ -180,7 +180,7 @@
 					{type: "POST",
 			        url: "/hd_mesos/userlook",
 			        data: {
-			        	"Username":username,
+			        	"username":username,
 			        	},
 			      success: function(data){
 			    	  var obj = eval('(' + data + ')');
@@ -199,7 +199,7 @@
 						{type: "POST",
 				        url: "/hd_mesos/pwdreset",
 				        data: {
-				        	"Username":username,
+				        	"username":username,
 				        	},
 				      success: function(data){
 				        	 alert(data);
@@ -254,7 +254,7 @@ $.validator.setDefaults({
 jQuery.validator.addMethod("asyncusername", function (value, element) {
    var result = false;
    $.ajaxSetup({async:false});
-   var param = {Username:value};
+   var param = {username:value};
    $.post("usernamechk",param,function(data){
 	   result = (1 == data);
    });

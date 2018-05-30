@@ -5,6 +5,8 @@
     <content url="file://$USER_HOME$/PycharmProjects/vuetest" />
     <orderEntry type="jdk" jdkName="Python 2.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="untitled" />
+    <orderEntry type="module" module-name="hd_inspection" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

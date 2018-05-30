@@ -74,9 +74,9 @@ function ajaxSubmitForm() {
 			{type: "POST",
 			  url: "/hd_mesos/useredit",
 		      data: {
-		        	"Username":$('#username').val(),
-		        	"Nickname":$('#nickname').val(),
-		        	"Password":$('#password').val(),
+		        	"username":$('#username').val(),
+		        	"nickname":$('#nickname').val(),
+		        	"password":$('#password').val(),
 		        	},
 		        	success: function()	{
 		        		$('#userModal').modal('hide');

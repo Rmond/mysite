@@ -68,14 +68,14 @@
 					<div class="form-group">
 						<label for="hostname" class="col-md-2 control-label">主机名</label>
 						<div class="col-md-6">
-							<input class="form-control" name="HostName" id="add_hostname"
+							<input class="form-control" name="hostname" id="add_hostname"
 								required data-msg-required="请输入主机名">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="hostip" class="col-md-2 control-label">IP地址</label>
 						<div class="col-md-6">
-							<input class="form-control" name="HostIP" id="add_hostip"
+							<input class="form-control" name="hostip" id="add_hostip"
 								required data-rule-hostip="true" data-rule-asynchostip="true"
 								data-msg-required="请输入IP地址">
 						</div>
@@ -84,7 +84,7 @@
 						<label for="" class="col-md-2 control-label">主机标签</label>
 						<div class="col-md-4">
 							<div>
-								<select id="add_tags" name="tags" class="form-control m-b"
+								<select id="add_tags" name="hosttags" class="form-control m-b"
 									size="3" multiple="multiple">
 								</select>
 							</div>
@@ -266,12 +266,12 @@
       });
       $('#host-info tbody').on( 'click', 'a.delete', function () {
     	  if (confirm("主人，真的不要我了吗？")) {
-    		  var hostIP = $(this).parents('tr').children().eq(2).text();
+    		  var hostip = $(this).parents('tr').children().eq(2).text();
 			  $.ajax(
 						{type: "POST",
 				        url: "/hd_mesos/hostdel",
 				        data: {
-				        	"HostIP":hostIP,
+				        	"hostip":hostip,
 				        	},
 				        success: function(resp){
 				        	window.location.reload();
