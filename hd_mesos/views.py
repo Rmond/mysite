@@ -267,12 +267,12 @@ def host_look(request,hostip):#主机信息更改
 @user_role
 def host_edit(request):
     if request.method == 'POST':
-        HostIP = request.POST['HostIP']
+        HostIP = request.POST['hostip']
         SelectTags = request.POST.getlist('tags_select')
         SelectGroupId = request.POST.getlist('asset_select')
         UnselectGroupId = request.POST.getlist('assets')
         hostinfo = HostInfo.objects.get(ip=HostIP)
-        hostinfo.hostname= request.POST['HostName']
+        hostinfo.hostname= request.POST['hostname']
         tagstr = ""
         for tag in SelectTags:
             tagstr+=Software.objects.get(id=tag).softname+" "
@@ -286,7 +286,7 @@ def host_edit(request):
                 host_group.save()
         for j in UnselectGroupId:
             host_group = Host_Group.objects.filter(group_id=j,ip_id=HostIP).delete()
-        return redirect('hostlist.html')
+        return redirect('hostlist')
 
 @csrf_exempt
 @login_check    
