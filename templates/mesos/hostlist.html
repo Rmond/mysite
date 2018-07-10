@@ -370,7 +370,7 @@ jQuery.validator.addMethod("hostip", function (value, element) {
 jQuery.validator.addMethod("asynchostip", function (value, element) {
    var result = false;
    $.ajaxSetup({async:false});
-   var param = {HostIP:value};
+   var param = {hostip:value};
    $.post("/hd_common/hostipchk",param,function(data){
 	   result = (1 == data);
    });

@@ -14,7 +14,7 @@ from hd_mesos.views import login_check
 @login_check
 def hostip_check(request):#添加主机前，判断主机是否存在
     if request.method == 'POST':
-        hostip = request.POST['HostIP']
+        hostip = request.POST['hostip']
         if HostInfo.objects.filter(ip=hostip):
             return HttpResponse(0)
         else:

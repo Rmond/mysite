@@ -41,7 +41,6 @@ urlpatterns = [
     url(r'^taskinfo/(?P<option>\w+)/(?P<taskid>\d+)/',views.task_info),
     url(r'^taskack$',views.task_ack),
     url(r'^hostimp',views.host_import),
-    url(r'^hostipcheck',views.hostip_check),
     url(r'^taskchart',views.task_chart),
     url(r'^assets_list',views.asserts_list),
 ]

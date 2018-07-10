@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="change api">
+    <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hd_common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_common/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hd_mesos/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_mesos/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hd_mesos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_mesos/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mesos/hostedit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mesos/hostedit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/mesos/hostlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mesos/hostlist.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,11 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hd_mesos/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="648">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -89,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="274" column="49" selection-start-line="274" selection-start-column="49" selection-end-line="274" selection-end-column="49" />
+            <state relative-caret-position="154">
+              <caret line="292" column="25" lean-forward="true" selection-start-line="292" selection-start-column="25" selection-end-line="292" selection-end-column="25" />
               <folding>
                 <element signature="e#23#60#0" expanded="true" />
               </folding>
@@ -101,11 +103,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd_common/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hostlist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/mesos/hostlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2365">
-              <caret line="78" column="86" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="86" />
+            <state relative-caret-position="-6205">
+              <caret line="75" column="42" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -136,8 +147,8 @@
       <find>scriptname</find>
       <find>ansible_handle</find>
       <find>mesos/ansible</find>
-      <find>HostIP</find>
       <find>Hostname</find>
+      <find>HostIP</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,7 +171,6 @@
         <option value="/usr/lib64/python2.7/site-packages/django/contrib/auth/forms.py" />
         <option value="$PROJECT_DIR$/hd_mesos/management.py" />
         <option value="$PROJECT_DIR$/mysite/settings.py" />
-        <option value="$PROJECT_DIR$/hd_mesos/urls.py" />
         <option value="$PROJECT_DIR$/hd_common/utils.py" />
         <option value="$PROJECT_DIR$/hd_ansible/urls.py" />
         <option value="$PROJECT_DIR$/hd_ansible/tasks.py" />
@@ -171,7 +181,6 @@
         <option value="$PROJECT_DIR$/mysite/urls.py" />
         <option value="$PROJECT_DIR$/templates/mesos/userlist.html" />
         <option value="$PROJECT_DIR$/static/js/handu.js" />
-        <option value="$PROJECT_DIR$/templates/mesos/hostlist.html" />
         <option value="$USER_HOME$/PycharmProjects/untitled/untitled/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_inspection/settings.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/templates/login.html" />
@@ -188,7 +197,10 @@
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/views.py" />
         <option value="$PROJECT_DIR$/templates/mesos/hostedit.html" />
+        <option value="$PROJECT_DIR$/templates/mesos/hostlist.html" />
         <option value="$PROJECT_DIR$/hd_mesos/views.py" />
+        <option value="$PROJECT_DIR$/hd_common/views.py" />
+        <option value="$PROJECT_DIR$/hd_mesos/urls.py" />
       </list>
     </option>
   </component>
@@ -228,6 +240,12 @@
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="hd_common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="hd_inventory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -235,13 +253,6 @@
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="hd_mesos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="hd_mesos" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
@@ -480,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527648711861</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="change hostedit">
+      <created>1531206822945</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1531206822945</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -586,7 +604,8 @@
     <MESSAGE value="add hd_inventory" />
     <MESSAGE value="add hd_inventory.url" />
     <MESSAGE value="change api" />
-    <option name="LAST_COMMIT_MESSAGE" value="change api" />
+    <MESSAGE value="change hostedit" />
+    <option name="LAST_COMMIT_MESSAGE" value="change hostedit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -671,11 +690,6 @@
         <state relative-caret-position="110">
           <caret line="14" column="95" lean-forward="true" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="95" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd_common/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hd_common/utils.py">
@@ -866,16 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/hd_inspection/hd_inspection/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -915,13 +919,6 @@
         <state relative-caret-position="-78" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_mesos/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -950,13 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mesos/hostlist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2365">
-          <caret line="78" column="86" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mesos/hostedit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-551">
@@ -964,13 +954,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mesos/hostlist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6205">
+          <caret line="75" column="42" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_common/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="274" column="49" selection-start-line="274" selection-start-column="49" selection-end-line="274" selection-end-column="49" />
+        <state relative-caret-position="154">
+          <caret line="292" column="25" lean-forward="true" selection-start-line="292" selection-start-column="25" selection-end-line="292" selection-end-column="25" />
           <folding>
             <element signature="e#23#60#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_mesos/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>

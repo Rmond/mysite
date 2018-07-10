@@ -300,16 +300,6 @@ def host_update(request):
         update_info.apply_async([host])
         return HttpResponse()
 
-@csrf_exempt
-@login_check
-def hostip_check(request):#添加主机前，判断主机是否存在
-    if request.method == 'POST':
-        HostIP = request.POST['HostIP']
-        if HostInfo.objects.filter(ip=HostIP):
-            return HttpResponse(0)
-        else:
-            return HttpResponse(1)
-
 @login_check
 def group_add(request):
     if request.method == 'POST':
