@@ -232,12 +232,16 @@ def host_add(request):#主机添加或修改
             tags+=Software.objects.get(id=tagid).softname+" "  
         hostinfo =  HostInfo(hostname=hostname,ip=hostip,tags=tags)
         hostinfo.save()
-        for i in SelectGroupId:#判断主机组是否被选中
-            host_group = Host_Group(group_id=i,ip_id=hostip)
-            host_group.save()
         if request.session.get('authmethod',None):
+            for i in SelectGroupId:
+                hostgroup=HostGroup.objects.get(groupname=i)
+                host_group = Host_Group(group_id=hostgroup.id, ip_id=hostip)
+                host_group.save()
             return HttpResponse('Success')
         else:
+            for i in SelectGroupId:  # 判断主机组是否被选中
+                host_group = Host_Group(group_id=i, ip_id=hostip)
+                host_group.save()
             return redirect('/hd_mesos/hostlist')
 
 @csrf_exempt
