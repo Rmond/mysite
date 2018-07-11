@@ -69,12 +69,14 @@
                         <li>
                             <a href="/hd_mesos/index.html"><i class="fa fa-dashboard fa-fw"></i> 仪表盘</a>
                         </li>
+                        {% if request.session.role == 0 %}
                          <li>
                             <a href="/hd_mesos/userlist.html"><i class="fa fa-user fa-fw"></i>用户管理</a>
                         </li>
                          <li>
                             <a href="/hd_mesos/privilegelist.html"><i class="fa fa-pencil fa-fw"></i>权限分配</a>
                         </li>
+                        {% endif %}
                        <!-- <li>
                             <a href="/hd_mesos/privilegelist.html"><i class="fa fa-ticket fa-fw"></i>工单管理</a>
                              <ul class="nav nav-second-level collapse">

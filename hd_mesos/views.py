@@ -469,7 +469,7 @@ def task_info(request,*args,**kwargs):
     else:
         user_task = User_Task.objects.get(id = kwargs['taskid'])
     if user_task.result:
-        result = user_task.result.replace("[","").replace("]","").replace("\"","").decode("unicode-escape").split(",")
+        result = user_task.result.replace("[","").replace("]","").replace("\\\"","").replace("\"","").decode("unicode-escape").split(",")
     else:
         result = []
     return render(request,"mesos/taskinfo.html",{"user_task":user_task,"result":result})
