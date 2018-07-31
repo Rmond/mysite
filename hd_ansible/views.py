@@ -139,13 +139,13 @@ def command_exec(request):
         hoststr = ":".join(hosts)
         extra_vars = {}
         extra_vars["hosts"] = hoststr
-        extra_vars["shell_cmd"] = request.POST["Command"]
+        extra_vars["shell_cmd"] = request.POST["command"]
         startime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         username = request.session.get("username",None)
-        if request.POST["Name"]:
-            taskname = request.POST["Name"]
+        if request.POST["name"]:
+            taskname = request.POST["name"]
         else:
-            taskname = username+"-"+request.POST["Command"].split()[0]
+            taskname = username+"-"+request.POST["command"].split()[0]
         playbook_path = "/opt/ansible/cmd/execute.yml"
         taskobj = com_playbook.apply_async([extra_vars,playbook_path])
         user_task = User_Shell_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=hoststr,taskname=taskname,shell_cmd=extra_vars["shell_cmd"])

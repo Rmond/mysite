@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hd_mesos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_mesos/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hd_ansible/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_ansible/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,15 +41,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hd_mesos/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd_inventory/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -58,11 +50,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main-layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/mesos/main-layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="582">
+              <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="247" column="51" lean-forward="true" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="51" />
+            <state relative-caret-position="414">
+              <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
               <folding>
                 <element signature="e#23#60#0" expanded="true" />
               </folding>
@@ -70,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main-layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/mesos/main-layout.html">
+      <file leaf-file-name="execute.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+            <state relative-caret-position="352">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -114,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="237" column="76" lean-forward="true" selection-start-line="237" selection-start-column="76" selection-end-line="237" selection-end-column="76" />
+            <state relative-caret-position="397">
+              <caret line="489" lean-forward="true" selection-start-line="489" selection-end-line="489" />
               <folding>
                 <element signature="e#23#60#0" expanded="true" />
               </folding>
@@ -197,7 +198,6 @@
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/static/css/handu.css" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/models.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/templates/index.html" />
-        <option value="$PROJECT_DIR$/hd_ansible/views.py" />
         <option value="$PROJECT_DIR$/hd_ansible/software/softview.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/views.py" />
@@ -210,6 +210,8 @@
         <option value="$PROJECT_DIR$/templates/mesos/userlist.html" />
         <option value="$PROJECT_DIR$/templates/mesos/privilegelist.html" />
         <option value="$PROJECT_DIR$/hd_mesos/views.py" />
+        <option value="$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html" />
+        <option value="$PROJECT_DIR$/hd_ansible/views.py" />
       </list>
     </option>
   </component>
@@ -255,12 +257,6 @@
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="hd_mesos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -277,6 +273,15 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="mesos" type="462c0819:PsiDirectoryNode" />
               <item name="hd_ansible" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="mesos" type="462c0819:PsiDirectoryNode" />
+              <item name="hd_ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -515,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531278897198</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="change hostadd">
+      <created>1531288993581</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1531288993581</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -569,9 +581,9 @@
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49795082" weight="0.2205438" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16580646" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="4" weight="0.32991803" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32967743" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.56508577" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32967743" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Favorites" order="6" side_tool="true" weight="0.32930514" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -623,7 +635,8 @@
     <MESSAGE value="change api" />
     <MESSAGE value="change hostedit" />
     <MESSAGE value="change hostipcheck" />
-    <option name="LAST_COMMIT_MESSAGE" value="change hostipcheck" />
+    <MESSAGE value="change hostadd" />
+    <option name="LAST_COMMIT_MESSAGE" value="change hostadd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -642,13 +655,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/lib64/python2.7/unittest/loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -938,13 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_inventory/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mesos/main-layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
@@ -995,20 +994,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
+    <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="247" column="51" lean-forward="true" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="51" />
+        <state relative-caret-position="397">
+          <caret line="489" lean-forward="true" selection-start-line="489" selection-end-line="489" />
           <folding>
             <element signature="e#23#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
+    <entry file="file://$PROJECT_DIR$/hd_inventory/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="237" column="76" lean-forward="true" selection-start-line="237" selection-start-column="76" selection-end-line="237" selection-end-column="76" />
+        <state relative-caret-position="132">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
           <folding>
             <element signature="e#23#60#0" expanded="true" />
           </folding>
