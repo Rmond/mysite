@@ -145,7 +145,7 @@ def command_exec(request):
         if request.POST.get('name',None):
             taskname = request.POST["name"]
         else:
-            taskname = username+"-"+request.POST["command"].split()[0]
+            taskname = username
         playbook_path = "/opt/ansible/cmd/execute.yml"
         taskobj = com_playbook.apply_async([extra_vars,playbook_path])
         user_task = User_Shell_Task(username_id = username,star_time = startime,taskid=taskobj.id,hosts=hoststr,taskname=taskname,shell_cmd=extra_vars["shell_cmd"])

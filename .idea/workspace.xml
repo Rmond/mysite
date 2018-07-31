@@ -61,8 +61,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
+            <state relative-caret-position="414">
+              <caret line="147" column="31" selection-start-line="147" selection-start-column="31" selection-end-line="147" selection-end-column="31" />
               <folding>
                 <element signature="e#23#60#0" expanded="true" />
               </folding>
@@ -527,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533014118938</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="change command name">
+      <created>1533014550589</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1533014550589</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -637,7 +644,8 @@
     <MESSAGE value="change hostipcheck" />
     <MESSAGE value="change hostadd" />
     <MESSAGE value="change command" />
-    <option name="LAST_COMMIT_MESSAGE" value="change command" />
+    <MESSAGE value="change command name" />
+    <option name="LAST_COMMIT_MESSAGE" value="change command name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1021,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
+        <state relative-caret-position="414">
+          <caret line="147" column="31" selection-start-line="147" selection-start-column="31" selection-end-line="147" selection-end-column="31" />
           <folding>
             <element signature="e#23#60#0" expanded="true" />
           </folding>
