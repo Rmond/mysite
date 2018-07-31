@@ -4,7 +4,6 @@
     <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hd_ansible/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hd_ansible/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,8 +61,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
+            <state relative-caret-position="348">
+              <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
               <folding>
                 <element signature="e#23#60#0" expanded="true" />
               </folding>
@@ -246,12 +245,6 @@
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="hd_ansible" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
@@ -527,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531288993581</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="change command">
+      <created>1533014118938</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1533014118938</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -636,7 +636,8 @@
     <MESSAGE value="change hostedit" />
     <MESSAGE value="change hostipcheck" />
     <MESSAGE value="change hostadd" />
-    <option name="LAST_COMMIT_MESSAGE" value="change hostadd" />
+    <MESSAGE value="change command" />
+    <option name="LAST_COMMIT_MESSAGE" value="change command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1020,8 +1021,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
+        <state relative-caret-position="348">
+          <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
           <folding>
             <element signature="e#23#60#0" expanded="true" />
           </folding>

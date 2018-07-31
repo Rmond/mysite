@@ -142,7 +142,7 @@ def command_exec(request):
         extra_vars["shell_cmd"] = request.POST["command"]
         startime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         username = request.session.get("username",None)
-        if request.POST["name"]:
+        if request.POST.get('name',None):
             taskname = request.POST["name"]
         else:
             taskname = username+"-"+request.POST["command"].split()[0]
