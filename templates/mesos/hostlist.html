@@ -25,7 +25,7 @@
 						data-target="#hostaddModal" id="add-row"><i class="fa fa-plus"></i>
 						添加主机</a>
 					<a class="btn btn-sm btn-primary-outline" data-toggle="modal"
-						data-target="#hostimp"><i class="fa fa-cloud-upload"></i> 导入主机</a>
+						data-target="#hostimpModal"><i class="fa fa-cloud-upload"></i> 导入主机</a>
 					<thead>
 						<tr>
 							<th class="text-center"><input type="checkbox"
@@ -152,7 +152,7 @@
 	</div>
 </div>
 <!-- hostimport -->
-<div class="modal fade" id="hostimp" tabindex="-1" role="dialog">
+<div class="modal fade" id="hostimpModal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -377,14 +377,14 @@ jQuery.validator.addMethod("asynchostip", function (value, element) {
    $.ajaxSetup({async:true});
    return result;
 },"主机IP已存在");
-
 $("#hostimp").validate({
-    submitHandler: function() {
-    	form.submit();
-   },
-    onfocusout: function(element) { $(element).valid(); },
-});
-
+        submitHandler: function () {
+            form.submit();
+        },
+        onfocusout: function (element) {
+            $(element).valid();
+        },
+    });
 jQuery.validator.addMethod("filext", function (value, element) {
 	//var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
 	var filext = /^.xls|.xlsx$/;

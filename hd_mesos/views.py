@@ -490,7 +490,6 @@ def task_ack(request):
 
 @csrf_exempt 
 @login_check
-@csrf_exempt
 def host_import(request):
     if request.method == "POST":
         f = request.FILES.get('xlsname')
