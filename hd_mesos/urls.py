@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^hostupdate$',views.host_update),
     url(r'^hostajaxget',views.host_ajaxget),
     url(r'^grouptagajaxget',views.group_tag_ajaxget),
-    url(r'^hostgroups',views.hostgroups),
+    url(r'^hostgroups$',views.hostgroups),
     url(r'^groupadd',views.group_add),
     url(r'^grouplook',views.group_look),
     url(r'^groupdel',views.group_del),

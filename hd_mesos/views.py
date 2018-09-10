@@ -290,7 +290,7 @@ def host_edit(request):
                 host_group.save()
         for j in UnselectGroupId:
             host_group = Host_Group.objects.filter(group_id=j,ip_id=HostIP).delete()
-        return redirect('hostlist')
+        return redirect('/hd_mesos/hostlist')
 
 @csrf_exempt
 @login_check    
@@ -325,7 +325,7 @@ def group_add(request):
                 host_group.save()
         for j in UnSelectGroupId:
             Host_Group.objects.filter(ip_id=j,group_id=hostgroup.id).delete()#删除在非选中框中的主机
-        return redirect('hostgroups.html')
+        return redirect('/hd_mesos/hostgroups')
 
 @csrf_exempt
 @login_check
