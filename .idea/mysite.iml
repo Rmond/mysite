@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="untitled" />
     <orderEntry type="module" module-name="hd_inspection" />
+    <orderEntry type="module" module-name="devops" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
