@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="">
+    <list default="true" id="fae6d6a9-523c-49ad-9baa-d3f190dcbf44" name="Default" comment="fix hostedit">
       <change afterPath="$PROJECT_DIR$/venv/bin/activate" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/bin/activate.csh" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/bin/activate.fish" afterDir="false" />
@@ -31,15 +31,6 @@
       <change afterPath="$PROJECT_DIR$/venv/bin/runxlrd.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/bin/xml2odf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/.libs_cffi_backend/libffi-d78936b1.so.6.0.4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/DESCRIPTION.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/entry_points.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Django-2.1.1.dist-info/top_level.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Jinja2-2.10.dist-info/DESCRIPTION.rst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Jinja2-2.10.dist-info/INSTALLER" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Jinja2-2.10.dist-info/LICENSE.txt" afterDir="false" />
@@ -4945,15 +4936,6 @@
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pymysql/protocol.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pymysql/times.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pymysql/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/DESCRIPTION.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz-2018.5.dist-info/zip-safe" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz/exceptions.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/pytz/lazy.py" afterDir="false" />
@@ -6446,10 +6428,12 @@
       <change afterPath="$PROJECT_DIR$/venv/share/man/man1/odfoutline.1" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/share/man/man1/odfuserfield.1" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/share/man/man1/xml2odf.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mysite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysite.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celery_beat.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/celery_nohup.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nohup.out" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -6459,10 +6443,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/mysite$manage.coverage" NAME="manage Coverage Results" MODIFIED="1541469726158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mysite$vuetest.coverage" NAME="vuetest Coverage Results" MODIFIED="1543211852676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/vuetest" />
+    <SUITE FILE_PATH="coverage/mysite$manage.coverage" NAME="manage Coverage Results" MODIFIED="1545808300020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mysite$vuetest.coverage" NAME="vuetest Coverage Results" MODIFIED="1545808243862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/vuetest" />
     <SUITE FILE_PATH="coverage/mysite$manage__1_.coverage" NAME="vuetest Coverage Results" MODIFIED="1524197205093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/vuetest" />
-    <SUITE FILE_PATH="coverage/mysite$devops.coverage" NAME="devops Coverage Results" MODIFIED="1543458631662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/devops" />
+    <SUITE FILE_PATH="coverage/mysite$devops.coverage" NAME="devops Coverage Results" MODIFIED="1544164107610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/devops" />
     <SUITE FILE_PATH="coverage/mysite$Test__.coverage" NAME="hd_inspection Coverage Results" MODIFIED="1526956225510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/mysite$Unittests_in_vuetest.coverage" NAME="Unittests in vuetest Coverage Results" MODIFIED="1536137197759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/PycharmProjects/vuetest" />
   </component>
@@ -6488,66 +6472,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/views.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/vuetest/app1/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="393">
+              <caret line="96" column="29" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
               <folding>
-                <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#24#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adminx.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/adminx.py">
+      <file leaf-file-name="mixins.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+            <state relative-caret-position="104">
+              <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#178#217#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/admin.py">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="basehttp.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/servers/basehttp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2882">
+              <caret line="151" selection-start-line="151" selection-end-line="151" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/devops/urls.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+            <state relative-caret-position="-2403" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3432" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="execute.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-839">
+              <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tasks.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd_ansible/tasks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2269">
+              <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
               <folding>
-                <element signature="e#640#680#0" expanded="true" />
+                <element signature="e#26#82#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/models.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hd_ansible/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+            <state relative-caret-position="66">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/serializer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#46#78#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -6575,6 +6574,7 @@
       <find>import</find>
       <find>jwt</find>
       <find>jwt_decode_handler</find>
+      <find>object</find>
     </findStrings>
     <dirStrings>
       <dir>/usr/lib/python2.7/site-packages</dir>
@@ -6595,7 +6595,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/PycharmProjects/hd_inspection/static/css/handu.css" />
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/templates/index.html" />
         <option value="$PROJECT_DIR$/hd_ansible/software/softview.py" />
         <option value="$PROJECT_DIR$/templates/mesos/hostedit.html" />
@@ -6618,10 +6617,7 @@
         <option value="$PROJECT_DIR$/hd_mesos/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/vuetest/app1/signals.py" />
         <option value="$USER_HOME$/PycharmProjects/vuetest/app1/adminx.py" />
-        <option value="$USER_HOME$/PycharmProjects/vuetest/vuetest/settings.py" />
         <option value="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/routers.py" />
-        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/models.py" />
-        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/serializer.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/devops/__init__.py" />
         <option value="$PROJECT_DIR$/hd_mesos/management.py" />
         <option value="$PROJECT_DIR$/hd_mesos/admin.py" />
@@ -6632,12 +6628,9 @@
         <option value="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily/views.py" />
         <option value="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/utils.py" />
         <option value="$PROJECT_DIR$/hd_mesos/views.py" />
-        <option value="$USER_HOME$/PycharmProjects/vuetest/vuetest/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/devops/settings.py" />
-        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/views.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/devops/urls.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/serializer.py" />
-        <option value="$USER_HOME$/PycharmProjects/devops/assets/views.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/migrations/0010_auto_20181207_1106.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/adminx.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/migrations/0005_auto_20181207_1154.py" />
@@ -6646,6 +6639,13 @@
         <option value="$USER_HOME$/PycharmProjects/devops/assets/migrations/0003_auto_20181129_1035.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/migrations/0005_auto_20181207_1200.py" />
         <option value="$USER_HOME$/PycharmProjects/devops/assets/models.py" />
+        <option value="$USER_HOME$/PycharmProjects/devops/assets/views.py" />
+        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/serializer.py" />
+        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/models.py" />
+        <option value="$USER_HOME$/PycharmProjects/vuetest/vuetest/settings.py" />
+        <option value="$USER_HOME$/PycharmProjects/vuetest/vuetest/urls.py" />
+        <option value="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py" />
+        <option value="$USER_HOME$/PycharmProjects/vuetest/app1/views.py" />
       </list>
     </option>
   </component>
@@ -6659,8 +6659,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1024" />
-    <option name="height" value="680" />
+    <option name="y" value="28" />
+    <option name="width" value="1014" />
+    <option name="height" value="687" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -6678,33 +6679,13 @@
             <path>
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="vuetest" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="vuetest" type="462c0819:PsiDirectoryNode" />
-              <item name="app1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mysite" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="vuetest" type="462c0819:PsiDirectoryNode" />
-              <item name="vuetest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops" type="462c0819:PsiDirectoryNode" />
-              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="hd_ansible" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mysite" type="b2602c69:ProjectViewProjectNode" />
@@ -6720,12 +6701,15 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/devops/manage.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/PycharmProjects/vuetest/media" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$/PycharmProjects/hd_inspection/templates" />
       <recent name="$USER_HOME$/PycharmProjects/hd_inspection/hd_daily" />
@@ -6744,7 +6728,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.devops">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="devops" type="PythonConfigurationType" factoryName="Python">
       <module name="devops" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -7033,7 +7017,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536568216493</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix hostedit">
+      <created>1544162059336</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1544162059336</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -7078,53 +7069,53 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1600" height="1138" extended-state="6" />
+    <frame x="0" y="28" width="1600" height="1138" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49806452" weight="0.32502595" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50258064" side_tool="true" weight="0.24714434" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49741936" visible="true" weight="0.26272067" />
       <window_info anchor="bottom" x="19" y="445" width="1562" height="320" id="Version Control" order="10" sideWeight="0.49871135" weight="0.22222222" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4967742" weight="0.32398754" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49741936" weight="0.26272067" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49741936" visible="true" weight="0.25337487" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22516128" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49741936" weight="0.25337487" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23483871" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.32967743" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.56490135" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.32967743" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.32967743" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Favorites" order="6" side_tool="true" weight="0.32930514" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47559708" />
+      <window_info anchor="bottom" id="Favorites" order="6" side_tool="true" weight="0.32930514" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.56490135" />
+      <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13208763" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989754" weight="0.3271028" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989754" weight="0.2411215" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49902344" weight="0.3255814" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="4" weight="0.32991803" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49795082" visible="true" weight="0.2205438" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010246" side_tool="true" weight="0.2411215" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49902344" weight="0.3255814" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -7156,10 +7147,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/hd_ansible/tasks.py</url>
-          <line>173</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hd_mesos/models.py</url>
           <line>21</line>
           <option name="timeStamp" value="1" />
@@ -7177,396 +7164,377 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="30" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/compat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#331#450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd_mesos/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/vuetest/vuetest/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-          <folding>
-            <element signature="e#641#682#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/datetime.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-425">
-          <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/response.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/devops/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-803">
-          <caret line="22" column="64" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1227">
-          <caret line="17" column="18" selection-start-line="17" selection-end-line="17" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authentication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="98" column="22" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/authentication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="96" column="35" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework_jwt/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/query_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1349">
-          <caret line="155" column="6" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2420">
-          <caret line="845" column="6" selection-start-line="845" selection-start-column="6" selection-end-line="845" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/filters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="147" column="6" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1862252381/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="721" column="6" selection-start-line="721" selection-start-column="6" selection-end-line="721" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-          <folding>
-            <element signature="e#178#217#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="248" selection-start-line="248" selection-end-line="248" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2283">
-          <caret line="93" column="6" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
+        <state relative-caret-position="253">
+          <caret line="28" column="56" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/generics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="168" column="49" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="49" />
+        <state relative-caret-position="170">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
           <folding>
             <element signature="e#62#101#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1862252381/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2181">
+          <caret line="721" column="12" selection-start-line="721" selection-start-column="6" selection-end-line="721" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/_collections_abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="395" selection-start-line="395" selection-end-line="395" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="192" selection-start-line="192" selection-end-line="192" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/html.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/utils/datastructures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/forms/widgets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/files/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/files/uploadedfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/files/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="2619" selection-start-line="2619" selection-end-line="2619" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/forms/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="583" selection-start-line="583" selection-end-line="583" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="522" selection-start-line="522" selection-end-line="522" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/serializer_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/dispatch/dispatcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/urls/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/conf/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/importlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/utils/module_loading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="449" selection-start-line="449" selection-end-line="449" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/pathlib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="998" selection-start-line="998" selection-end-line="998" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/http/cookies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="506" selection-start-line="506" selection-end-line="506" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/views/debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/middleware/clickjacking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/messages/storage/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/messages/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/middleware/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="319" selection-start-line="319" selection-end-line="319" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/middleware/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/utils/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="211" selection-start-line="211" selection-end-line="211" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/http/response.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="325" selection-start-line="325" selection-end-line="325" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/wsgiref/headers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python-3.6.6/Lib/wsgiref/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/staticfiles/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/handlers/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="152" selection-start-line="152" selection-end-line="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/viewsets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="159" column="52" selection-start-line="159" selection-start-column="52" selection-end-line="159" selection-end-column="52" />
+        <state relative-caret-position="22">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
           <folding>
             <element signature="e#676#715#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/handlers/exception.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="8" column="13" selection-start-line="8" selection-end-line="9" />
+        <state relative-caret-position="170">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/permissions.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/utils/deprecation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="318">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/auth/models.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="287" column="6" selection-start-line="287" selection-start-column="6" selection-end-line="287" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="148">
+          <caret line="485" selection-start-line="485" selection-end-line="485" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/vuetest/app1/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="393">
+          <caret line="96" column="29" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd_mesos/models.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/core/servers/basehttp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2882">
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_mesos/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3432" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+          <folding>
+            <element signature="e#178#217#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mesos/hd_ansible/command/execute.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-839">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_ansible/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2403" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_ansible/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2269">
+          <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
+          <folding>
+            <element signature="e#26#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd_ansible/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/vuetest/app1/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="14" column="80" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/pagination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="155" column="6" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/vuetest/app1/adminx.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/devops/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-          <folding>
-            <element signature="e#640#680#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/serializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0010_auto_20181207_1106.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/xadmin/views/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/adminx.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0005_hostprofile.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0007_auto_20181207_1012.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0011_auto_20181207_1145.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" column="10" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0008_auto_20181207_1018.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0009_auto_20181207_1050.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0005_auto_20181207_1154.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0002_auto_20181115_1122.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0003_auto_20181129_1035.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0005_auto_20181207_1200.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="33" column="75" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="75" />
-          <folding>
-            <element signature="e#49#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/migrations/0004_auto_20181129_1342.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/devops/assets/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#46#78#0" expanded="true" />
           </folding>
         </state>
       </provider>
